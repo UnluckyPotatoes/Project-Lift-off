@@ -18,19 +18,35 @@ namespace GXPEngine
 		public bool visible = true;
 		private bool destroyed = false;
 
-		//------------------------------------------------------------------------------------------------------------------------
-		//														GameObject()
-		//------------------------------------------------------------------------------------------------------------------------
-		/// <summary>
-		/// Initializes a new instance of the <see cref="GXPEngine.GameObject"/> class.
-		/// Since GameObjects contain a display hierarchy, a GameObject can be used as a container for other objects.
-		/// Other objects can be added using child commands as AddChild.
-		/// </summary>
-		/// <param name="addCollider">
-		/// If <c>true</c>, then the virtual function createCollider will be called, which can be overridden to create a collider that 
-		/// will be added to the collision manager. 
-		/// </param> 
-		public GameObject(bool addCollider=false)
+        //added by Sybren de Haas
+        public float health;
+        public float maxHealth;
+
+        public Boolean IsDead(float health)
+        {
+            if (health <= 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        //
+
+
+
+        //------------------------------------------------------------------------------------------------------------------------
+        //														GameObject()
+        //------------------------------------------------------------------------------------------------------------------------
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GXPEngine.GameObject"/> class.
+        /// Since GameObjects contain a display hierarchy, a GameObject can be used as a container for other objects.
+        /// Other objects can be added using child commands as AddChild.
+        /// </summary>
+        /// <param name="addCollider">
+        /// If <c>true</c>, then the virtual function createCollider will be called, which can be overridden to create a collider that 
+        /// will be added to the collision manager. 
+        /// </param> 
+        public GameObject(bool addCollider=false)
 		{
 			if (addCollider) {
 				_collider = createCollider ();

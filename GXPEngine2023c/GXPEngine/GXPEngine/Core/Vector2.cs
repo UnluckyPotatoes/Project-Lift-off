@@ -16,6 +16,24 @@ namespace GXPEngine.Core
 		override public string ToString() {
 			return "[Vector2 " + x + ", " + y + "]";
 		}
-	}
+
+        //added by Sybren de Haas
+        public void Normalize()
+        {
+            float length = Magnitude();
+            if (length != 0)
+            {
+                x /= length;
+                y /= length;
+            }
+        }
+
+        public float Magnitude() //hypotenuse 
+        {
+            return Mathf.Sqrt(x * x + y * y);
+        }
+
+
+    }
 }
 

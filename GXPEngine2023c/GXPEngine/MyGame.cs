@@ -1,32 +1,79 @@
-using System;                                   // System contains a lot of default C# libraries 
 using GXPEngine;                                // GXPEngine contains the engine
-using System.Drawing;                           // System.Drawing contains drawing tools such as Color definitions
+using GXPEngine.Core;
+using System;                                   // System contains a lot of default C# libraries 
+using System.Collections.Generic;
+using TiledMapParser;
+public class MyGame : Game
+{
+    private Player player1;
+    private Player player2;
+    private UI ui;
+    private Camera playerCamera;
+    private float player1Health;
+    private float player2health;
+    private string newLevel;
+    public Camera GetPlayerCamera() { return playerCamera; }
+    public MyGame() : base(1920, 1080, false)
+    {
+        newLevel = "Test.tmx";
+        OnAfterStep += LoadLevel;
+    }
 
-public class MyGame : Game {
-	public MyGame() : base(800, 600, false)     // Create a window that's 800x600 and NOT fullscreen
-	{
-		// Draw some things on a canvas:
-		EasyDraw canvas = new EasyDraw(800, 600);
-		canvas.Clear(Color.MediumPurple);
-		canvas.Fill(Color.Yellow);
-		canvas.Ellipse(width / 2, height / 2, 200, 200);
-		canvas.Fill(50);
-		canvas.TextSize(32);
-		canvas.TextAlign(CenterMode.Center, CenterMode.Center);
-		canvas.Text("Welcome!", width / 2, height / 2);
+    void Update()
+    {
+        if (player1 != null)
+        {
+            player1Health = player1.health;
+            player2health = player2.health;
+        }
+        if (Input.GetKey(Key.LEFT_SHIFT))
+        {
+            Console.WriteLine(currentFps);
+            Console.WriteLine(GetDiagnostics());
+        }
+    }
 
-		// Add the canvas to the engine to display it:
-		AddChild(canvas);
-		Console.WriteLine("MyGame initialized");
-	}
 
-	// For every game object, Update is called every frame, by the engine:
-	void Update() {
-		// Empty
-	}
+    void DestroyLevel()
+    {
+        List<GameObject> children = GetChildren();
+        for (int i = children.Count - 1; i >= 0; i--)
+        {
+            children[i].Destroy();
+        }
+    }
 
-	static void Main()                          // Main() is the first method that's called when the program is run
-	{
-		new MyGame().Start();                   // Create a "MyGame" and start it
-	}
+
+    public void MoveToLevel(string levelName)
+    {
+        newLevel = levelName;
+    }
+
+    void LoadLevel()
+    {
+        if (newLevel != null)
+        {
+            DestroyLevel();
+            AddChild(new Level(newLevel));
+            newLevel = null;
+        }
+    }
+
+
+
+    void LoadInfo()
+    {
+        if (player1 != null)
+        {
+            player1.health = player1Health;
+        }
+    }
+
+
+    
+
+    static void Main()                          // Main() is the first method that's called when the program is run
+    {
+        new MyGame().Start();                   // Create a "MyGame" and start it
+    }
 }
