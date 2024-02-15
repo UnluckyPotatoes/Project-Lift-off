@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GXPEngine;
+using TiledMapParser;
 
     internal class PlayerHealthBar : GameObject
     {
         private Health playerHealth = new Health();
     public PlayerHealthBar() : base()
         {
-            x = -240;
-            y = -150;
+            x = 0; y = 0;
             HealthBar healthBar = new HealthBar();
             HealthBackground healthBackground = new HealthBackground();
             AddChild(healthBar);
@@ -20,6 +20,11 @@ using GXPEngine;
         }
         void Update()
         {
-            
+            if (game.FindObjectOfType<Player>() != null)
+            {
+                float playerMaxHealth = game.FindObjectOfType<Player>().maxHealth;
+                float playerCurrentHealth = game.FindObjectOfType<Player>().health;
+                playerHealth.scaleX = (playerCurrentHealth / playerMaxHealth);
+            }
         }
     }

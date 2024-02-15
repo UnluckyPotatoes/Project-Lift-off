@@ -49,8 +49,6 @@ public class Player : AnimationSprite
         if (Input.GetKey(Key.S)) { py = speed; }
         if (Input.GetKey(Key.D)) { px = speed; }
 
-        
-
         MoveUntilCollision(px, 0);
         MoveUntilCollision(0, py);
     }

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GXPEngine;
+using TiledMapParser;
 
-    internal class Health : Sprite
+internal class Health : Sprite
     {
-        public Health() : base("Health.png", false, false) 
+        public Health(TiledObject obj = null) : base("Health.png", false, false) 
         {
-            x = 2; y = 2;
+            
         }
     }

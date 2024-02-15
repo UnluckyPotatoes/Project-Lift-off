@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GXPEngine;
+using TiledMapParser;
 
-    internal class HealthBar : Sprite
+internal class HealthBar : Sprite
     {
-        public HealthBar() : base("Healthbar.png", false, false)
+        public HealthBar(TiledObject obj = null) : base("Healthbar.png", false, false)
         {         
         }
     }

@@ -99,59 +99,61 @@ public class Enemy : Sprite
             targetPlayer = ((MyGame)game).FindObjectOfType<Player>();
         }
 
-        Vector2 directionToPlayer = new Vector2(targetPlayer.x - x, targetPlayer.y - y);
-        float distanceToTargetPlayer = directionToPlayer.Magnitude();
-        directionToPlayer.Normalize();
-
-        Vector2 directionToStart = new Vector2(startX - x, startY - y);
-        float distanceToTargetStart = directionToStart.Magnitude();
-        directionToStart.Normalize();
-
-
-        if (distanceToTargetPlayer < 128f && distanceToTargetPlayer > 16f)
+        if (targetPlayer != null)
         {
-            currentState = EnemyState.Chase;
-        }
-        else
-        if (distanceToTargetPlayer < 16f)
-        {
-            currentState = EnemyState.Attack;
-        }
-        else
-        if (distanceToTargetPlayer > 128f)
-        {
-            currentState = EnemyState.Return;
-            if (distanceToTargetStart < 0.25f)
+            Vector2 directionToPlayer = new Vector2(targetPlayer.x - x, targetPlayer.y - y);
+            float distanceToTargetPlayer = directionToPlayer.Magnitude();
+            directionToPlayer.Normalize();
+
+            Vector2 directionToStart = new Vector2(startX - x, startY - y);
+            float distanceToTargetStart = directionToStart.Magnitude();
+            directionToStart.Normalize();
+
+
+            if (distanceToTargetPlayer < 128f && distanceToTargetPlayer > 16f)
             {
-                currentState = EnemyState.Guard;
+                currentState = EnemyState.Chase;
             }
+            else
+        if (distanceToTargetPlayer < 16f)
+            {
+                currentState = EnemyState.Attack;
+            }
+            else
+        if (distanceToTargetPlayer > 128f)
+            {
+                currentState = EnemyState.Return;
+                if (distanceToTargetStart < 0.25f)
+                {
+                    currentState = EnemyState.Guard;
+                }
+            }
+            else currentState = EnemyState.Guard;
+
+
+
+            switch (currentState)
+            {
+                case EnemyState.Guard:
+                    GuardBehavior();
+                    break;
+                case EnemyState.Patrol:
+                    PatrolBehavior();
+                    break;
+                case EnemyState.Chase:
+                    ChaseBehavior(directionToPlayer);
+                    break;
+                case EnemyState.Return:
+                    ReturnBehavior(directionToStart);
+                    break;
+                case EnemyState.Attack:
+                    AttackBehavior();
+                    break;
+            }
+
+
         }
-        else currentState = EnemyState.Guard;
-
-
-
-        switch (currentState)
-        {
-            case EnemyState.Guard:
-                GuardBehavior();
-                break;
-            case EnemyState.Patrol:
-                PatrolBehavior();
-                break;
-            case EnemyState.Chase:
-                ChaseBehavior(directionToPlayer);
-                break;
-            case EnemyState.Return:
-                ReturnBehavior(directionToStart);
-                break;
-            case EnemyState.Attack:
-                AttackBehavior();
-                break;
-        }
-
-
-
-
+        
     }
 
 

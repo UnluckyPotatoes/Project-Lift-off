@@ -8,14 +8,14 @@ public class MyGame : Game
     private Player player1;
     private Player player2;
     private UI ui;
-    private Camera playerCamera;
     private float player1Health;
     private float player2health;
     private string newLevel;
-    public Camera GetPlayerCamera() { return playerCamera; }
+    
     public MyGame() : base(1920, 1080, false)
     {
         newLevel = "Test.tmx";
+        
         OnAfterStep += LoadLevel;
     }
 
