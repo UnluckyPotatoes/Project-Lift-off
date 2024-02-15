@@ -29,7 +29,7 @@ public class Enemy : Sprite
     public float GetDamage() { return damage; }
 
 
-    public Enemy(TiledObject obj = null) : base("Enemy.png")
+    public Enemy(TiledObject obj = null) : base("Assets/Enemy.png")
     {
         startX = obj.X;
         startY = obj.Y;

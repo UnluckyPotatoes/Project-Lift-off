@@ -9,7 +9,7 @@ using GXPEngine;
 
     internal class HealthBackground : Sprite
     {
-        public HealthBackground(TiledObject obj = null ) : base("Health_Background.png", false, false) 
+        public HealthBackground(TiledObject obj = null ) : base("Assets/Health_Background.png", false, false) 
         {
            
         }

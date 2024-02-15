@@ -9,7 +9,7 @@ public class Player : AnimationSprite
     readonly float invulernableWindow = 0.5f;
     private float invulernableWindowTimer;
     
-    public Player(TiledObject obj = null) : base("charcater_f3_copy.png", 1, 1)
+    public Player(TiledObject obj = null) : base("Assets/charcater_f3_copy.png", 1, 1)
     {
         health = obj.GetFloatProperty("Health");
         collider.isTrigger = true;

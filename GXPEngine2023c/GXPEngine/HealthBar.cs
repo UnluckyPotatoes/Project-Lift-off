@@ -8,7 +8,7 @@ using TiledMapParser;
 
 internal class HealthBar : Sprite
     {
-        public HealthBar(TiledObject obj = null) : base("Healthbar.png", false, false)
+        public HealthBar(TiledObject obj = null) : base("Assets/Healthbar.png", false, false)
         {         
         }
     }

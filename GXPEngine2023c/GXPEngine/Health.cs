@@ -8,7 +8,7 @@ using TiledMapParser;
 
 internal class Health : Sprite
     {
-        public Health(TiledObject obj = null) : base("Health.png", false, false) 
+        public Health(TiledObject obj = null) : base("Assets/Health.png", false, false) 
         {
             
         }

@@ -14,7 +14,7 @@ public class MyGame : Game
     
     public MyGame() : base(1920, 1080, false)
     {
-        newLevel = "Test.tmx";
+        newLevel = "Assets/Test.tmx";
         
         OnAfterStep += LoadLevel;
     }
