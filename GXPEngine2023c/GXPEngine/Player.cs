@@ -24,6 +24,9 @@ public class Player : Character
         Console.WriteLine(health + " " + maxHealth);
         playerIndex = obj.GetIntProperty("playerIndex");
         collider.isTrigger = true;
+        Pistol pistol = new Pistol();
+        Assault_Rifle assault_Rifle = new Assault_Rifle();
+        AddChild(assault_Rifle);
     }
 
     void Update()
