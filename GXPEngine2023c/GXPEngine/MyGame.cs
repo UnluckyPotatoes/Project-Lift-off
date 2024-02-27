@@ -20,11 +20,11 @@ public class MyGame : Game
         levels[0] = "Assets/Menu.tmx";
         levels[1] = "Assets/Test.tmx";
         LoadLevel(levels[0]);
+        /*OnAfterStep += LoadLevel;*/
     }
 
     void Update()
     {
-        LoadInfo();
         if (player1 != null)
         {
             player1Health = player1.health;
@@ -45,16 +45,16 @@ public class MyGame : Game
         }
     }
 
-    void LoadInfo()
+/*    void LoadInfo()
     {
         if (player1 != null)
         {
             player1.health = player1Health;
         }
-    }
+    }*/
 
 
-    void LoadLevel(string name)
+    void LoadLevel(string name) // level loader
     {
         List<GameObject> children = GetChildren();
 
@@ -62,13 +62,12 @@ public class MyGame : Game
         {
             child.Destroy();
         }
-
-        Level level = new Level(name);
-        LateAddChild(level);
+        Level levels = new Level(name);
+        AddChild(levels);
         if (currentLevel >= 1)
         {
             ui = new UI(width, height);
-            LateAddChild(ui);
+            AddChild(ui);
         }
 
 
