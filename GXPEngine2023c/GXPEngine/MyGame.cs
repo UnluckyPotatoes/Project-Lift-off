@@ -11,13 +11,15 @@ public class MyGame : Game
     private Menu menu;
     private float player1Health;
     private float player2health;
-    private string newLevel;
+    private string[] levels = new string[2];
+    private int currentLevel = 0;
     
     public MyGame() : base(1920, 1080, false)
     {
         
-        newLevel = "Assets/Test.tmx";
-        OnAfterStep += LoadLevel;
+        levels[0] = "Assets/Menu.tmx";
+        levels[1] = "Assets/Test.tmx";
+        LoadLevel(levels[0]);
     }
 
     void Update()
@@ -32,35 +34,15 @@ public class MyGame : Game
             Console.WriteLine(currentFps);
             Console.WriteLine(GetDiagnostics());
         }
-    }
-
-
-    void DestroyLevel()
-    {
-        List<GameObject> children = GetChildren();
-        for (int i = children.Count - 1; i >= 0; i--)
+        if (Input.GetKeyUp(Key.ENTER))
         {
-            children[i].Destroy();
+            if (currentLevel == 0)
+            {
+                currentLevel = 1;
+                LoadLevel(levels[currentLevel]);
+            }
         }
     }
-
-
-    public void MoveToLevel(string levelName)
-    {
-        newLevel = levelName;
-    }
-
-    void LoadLevel()
-    {
-        if (newLevel != null)
-        {
-            DestroyLevel();
-            AddChild(new Level(newLevel));
-            AddChild(new UI(width, height));
-            newLevel = null;
-        }
-    }
-
 
 
     void LoadInfo()
@@ -71,8 +53,26 @@ public class MyGame : Game
         }
     }
 
+    void LoadLevel(string name)
+    {
+        List<GameObject> children = GetChildren();
 
-    
+        foreach (GameObject child in children)
+        {
+            child.Destroy();
+        }
+
+        Level level = new Level(name);
+        LateAddChild(level);
+        if (currentLevel >= 1)
+        {
+            ui = new UI(width, height);
+            LateAddChild(ui);
+        }
+
+
+    }
+
 
     static void Main()                          // Main() is the first method that's called when the program is run
     {
