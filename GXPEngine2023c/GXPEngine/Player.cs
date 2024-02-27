@@ -2,16 +2,27 @@
 using System;
 using TiledMapParser;
 
-public class Player : AnimationSprite
+public class Player : Character
 {
     public GameObject[] invSlot = new GameObject[3];
     readonly float speed = 2;
     readonly float invulernableWindow = 0.5f;
     private float invulernableWindowTimer;
-    
-    public Player(TiledObject obj = null) : base("Assets/charcater_f3_copy.png", 1, 1)
+    private int playerIndex;
+
+
+    public int PlayerIndex   // property
+    {
+        get { return playerIndex; }   // get method
+    }
+
+
+    public Player(TiledObject obj = null) : base("Assets/charcater_f3_copy.png", 1,1)
     {
         health = obj.GetFloatProperty("Health");
+        maxHealth = obj.GetFloatProperty("maxHealth");
+        Console.WriteLine(health + " " + maxHealth);
+        playerIndex = obj.GetIntProperty("playerIndex");
         collider.isTrigger = true;
     }
 

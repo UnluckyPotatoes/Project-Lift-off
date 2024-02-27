@@ -18,19 +18,7 @@ namespace GXPEngine
 		public bool visible = true;
 		private bool destroyed = false;
 
-        //added by Sybren de Haas
-        public float health;
-        public float maxHealth;
-
-        public Boolean IsDead(float health)
-        {
-            if (health <= 0)
-            {
-                return true;
-            }
-            return false;
-        }
-        //
+        
 
 
 

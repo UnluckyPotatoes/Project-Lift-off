@@ -151,7 +151,12 @@
 </data>
  </layer>
  <objectgroup id="6" name="Characters">
-  <object id="39" name="Player" type="Player" x="848" y="528" width="64" height="64">
+  <properties>
+   <property name="Health" type="int" value="10"/>
+   <property name="MaxHealth" type="int" value="10"/>
+   <property name="PlayerIndex" type="int" value="1"/>
+  </properties>
+  <object id="39" name="Player1" type="Player" x="848" y="528" width="64" height="64">
    <properties>
     <property name="Health" type="float" value="10"/>
     <property name="maxHealth" type="float" value="10"/>
@@ -179,18 +184,6 @@
    <properties>
     <property name="Health" type="float" value="2"/>
     <property name="damage" type="float" value="1"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup id="10" name="UI player1">
-  <object id="50" name="HealthBar" type="HealthBar" x="0" y="0" width="320" height="32">
-   <properties>
-    <property name="Player" value="Player1"/>
-   </properties>
-  </object>
-  <object id="53" name="Health" type="Health" x="2" y="2" width="316" height="28">
-   <properties>
-    <property name="Player" value="Player1"/>
    </properties>
   </object>
  </objectgroup>

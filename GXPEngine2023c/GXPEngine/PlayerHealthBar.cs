@@ -1,31 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GXPEngine;
+﻿using GXPEngine;
+using System;
 using TiledMapParser;
 
-    internal class PlayerHealthBar : GameObject
-    {
-        private Health player1Health = new Health();
-        private Health player2Health = new Health();
+internal class PlayerHealthBar : GameObject
+{
+    private Player player1;
+    private Player player2;
+    private Health player1Health = new Health();
+    private Health player2Health = new Health();
     public PlayerHealthBar() : base()
+    {
+        scale = 2;
+        HealthBar healthBar = new HealthBar();
+        HealthBackground healthBackground = new HealthBackground();
+        AddChild(healthBar);
+        AddChild(healthBackground);
+        AddChild(player1Health);
+        FindPlayer();
+    }
+
+    void FindPlayer()
+    {
+        Player[] players = game.FindObjectsOfType<Player>();
+        if (players.Length > 0)
         {
-            x = 0; y = 0;
-            HealthBar healthBar = new HealthBar();
-            HealthBackground healthBackground = new HealthBackground();
-            AddChild(healthBar);
-            AddChild(healthBackground);
-            AddChild(player1Health);
-        }
-        void Update()
-        {
-            if (game.FindObjectOfType<Player>() != null)
+            foreach (Player player in players)
             {
-                float player1MaxHealth = game.FindObjectOfType<Player>().maxHealth;
-                float player1CurrentHealth = game.FindObjectOfType<Player>().health;
-                player1Health.scaleX = (player1CurrentHealth / player1MaxHealth);
+                if (player.PlayerIndex == 1)
+                {
+                    player1 = player;
+                }
+                if (player.PlayerIndex == 2) 
+                {
+                    player2 = player;
+                }
             }
         }
+
     }
+    void Update()
+    {
+        if (player1 != null)
+        {
+            float player1CurrentHealth = player1.health;
+            float player1MaxHealth = player1.maxHealth;
+            
+            player1Health.scaleX = (player1CurrentHealth / player1MaxHealth);
+            
+        }
+        
+
+
+
+
+
+    }
+}

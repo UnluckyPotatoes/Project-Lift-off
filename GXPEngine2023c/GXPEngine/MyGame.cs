@@ -55,6 +55,7 @@ public class MyGame : Game
         {
             DestroyLevel();
             AddChild(new Level(newLevel));
+            AddChild(new UI(width, height));
             newLevel = null;
         }
     }
