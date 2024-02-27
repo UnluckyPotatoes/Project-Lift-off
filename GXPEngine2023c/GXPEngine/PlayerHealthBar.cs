@@ -8,7 +8,8 @@ using TiledMapParser;
 
     internal class PlayerHealthBar : GameObject
     {
-        private Health playerHealth = new Health();
+        private Health player1Health = new Health();
+        private Health player2Health = new Health();
     public PlayerHealthBar() : base()
         {
             x = 0; y = 0;
@@ -16,15 +17,15 @@ using TiledMapParser;
             HealthBackground healthBackground = new HealthBackground();
             AddChild(healthBar);
             AddChild(healthBackground);
-            AddChild(playerHealth);
+            AddChild(player1Health);
         }
         void Update()
         {
             if (game.FindObjectOfType<Player>() != null)
             {
-                float playerMaxHealth = game.FindObjectOfType<Player>().maxHealth;
-                float playerCurrentHealth = game.FindObjectOfType<Player>().health;
-                playerHealth.scaleX = (playerCurrentHealth / playerMaxHealth);
+                float player1MaxHealth = game.FindObjectOfType<Player>().maxHealth;
+                float player1CurrentHealth = game.FindObjectOfType<Player>().health;
+                player1Health.scaleX = (player1CurrentHealth / player1MaxHealth);
             }
         }
     }
