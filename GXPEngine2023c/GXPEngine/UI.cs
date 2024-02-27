@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using GXPEngine;
+﻿using GXPEngine;
 
 public class UI : Canvas
+{
+
+    public UI(int width, int height) : base(width, height, false)
     {
+        PlayerHealthBar player1HealthBar = new PlayerHealthBar();
+        PlayerHealthBar player2HealthBar = new PlayerHealthBar();
+        AddChild(player1HealthBar);
+        
 
-        public UI(): base(100, 100, false)
-        {
-            PlayerHealthBar playerHealthBar = new PlayerHealthBar();
-            AddChild(playerHealthBar);
-
-        }
     }
+}
 

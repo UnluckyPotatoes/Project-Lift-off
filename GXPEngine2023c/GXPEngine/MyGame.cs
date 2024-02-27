@@ -8,14 +8,15 @@ public class MyGame : Game
     private Player player1;
     private Player player2;
     private UI ui;
+    private Menu menu;
     private float player1Health;
     private float player2health;
     private string newLevel;
     
     public MyGame() : base(1920, 1080, false)
     {
-        newLevel = "Assets/Test.tmx";
         
+        newLevel = "Assets/Test.tmx";
         OnAfterStep += LoadLevel;
     }
 
@@ -55,6 +56,7 @@ public class MyGame : Game
         {
             DestroyLevel();
             AddChild(new Level(newLevel));
+            AddChild(new UI(width, height));
             newLevel = null;
         }
     }

@@ -15,7 +15,7 @@ public enum EnemyState
     Return,
     Attack
 }
-public class Enemy : Sprite
+public class Enemy : Character
 {
     Player targetPlayer;
     readonly float speed = 0.75f;
@@ -29,7 +29,7 @@ public class Enemy : Sprite
     public float GetDamage() { return damage; }
 
 
-    public Enemy(TiledObject obj = null) : base("Assets/Enemy.png")
+    public Enemy(TiledObject obj = null) : base("Assets/Enemy.png", 1, 1)
     {
         startX = obj.X;
         startY = obj.Y;
