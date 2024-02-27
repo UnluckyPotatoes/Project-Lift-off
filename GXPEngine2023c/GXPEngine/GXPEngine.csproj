@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assault Rifle.cs" />
+    <Compile Include="Bullet.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyHealthInfo.cs" />
@@ -89,9 +91,12 @@
     <Compile Include="GXPEngine\FMOD\FMODSoundSystem.cs" />
     <Compile Include="GXPEngine\SoLoud\Soloud.cs" />
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
+    <Compile Include="Pistol.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerHealthBar.cs" />
+    <Compile Include="Projectile.cs" />
     <Compile Include="UI.cs" />
+    <Compile Include="Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
