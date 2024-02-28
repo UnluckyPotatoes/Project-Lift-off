@@ -98,6 +98,7 @@
     <Compile Include="Projectile.cs" />
     <Compile Include="UI.cs" />
     <Compile Include="Weapon.cs" />
+    <Compile Include="WeaponInventory.cs" />
     <Compile Include="WeaponManager.cs" />
   </ItemGroup>
   <ItemGroup>

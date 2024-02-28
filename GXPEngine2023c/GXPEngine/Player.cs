@@ -75,7 +75,6 @@ public class Player : Character
     private void ChangeWeapon()
     {
 
-
         WeaponCheck();
         RemoveChild(activeWeapon);
         weaponManager.DoSwitchWeapon();
