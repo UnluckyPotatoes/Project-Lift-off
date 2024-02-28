@@ -2,7 +2,7 @@
 {
     public enum Weapons
     {
-        WMPistol,
+        WMPistol, // what does WM mean?
         WMAssaultRifle,
         WMShotgun
     }

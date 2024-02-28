@@ -10,7 +10,7 @@ internal class Health : Sprite
     {
         public Health(TiledObject obj = null) : base("Assets/Health.png", false, false) 
         {
-        x = 2;
+        x = 2; // ???
         y = 2;
             
         }

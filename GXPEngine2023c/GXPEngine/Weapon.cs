@@ -6,22 +6,22 @@ using TiledMapParser;
 public class Weapon : Sprite
 {
     private float cooldown;
-    private float r;
-    private float px;
-    private float py;
+    private float r; // rotation
+    private float px; // playerX
+    private float py; // playerY
     private float damage;
     private float fireRate;
-    private Player player1;
-    private Player player2;
+    private Player player1; // is not being used
+    private Player player2; // is not being used
     private float ammo = 5;
     public float Ammo { get { return ammo; } }
 
-    public float setWeaponDamage(float db)
+    public float setWeaponDamage(float db) // is not being used
     {
-        damage += db;
+        damage += db; // what does the b mean?
         return damage;
     }
-    public float setWeaponFireRate(float fr)
+    public float setWeaponFireRate(float fr) // is not being used
     {
         fireRate += fr;
         return fireRate;
@@ -36,7 +36,7 @@ public class Weapon : Sprite
         
     }
 
-    public float getWeaponDamage() { return damage; }
+    public float getWeaponDamage() { return damage; } // is not being used
     public void Updater(float px, float py, Projectile projectile)
     {
         Inhand(px, py);
