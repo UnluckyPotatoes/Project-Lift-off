@@ -9,24 +9,37 @@ public class Player : Character
     readonly float invulernableWindow = 0.5f;
     private float invulernableWindowTimer;
     private int playerIndex;
+    private float ammo; //ammo off the player since all weapons share the same ammo
+    private WeaponManager weaponManager;
+    private Pistol pistol;
+    private Assault_Rifle AssaultRifle;
+    private Weapon activeWeapon;
 
 
+    public float Ammo
+    {
+        get { return ammo; }
+        set { ammo = value; }
+    }
     public int PlayerIndex   // property
     {
         get { return playerIndex; }   // get method
     }
 
 
-    public Player(TiledObject obj = null) : base("Assets/charcater_f3_copy.png", 1,1)
+    public Player(TiledObject obj = null) : base("Assets/charcater_f3_copy.png", 1, 1)
     {
         health = obj.GetFloatProperty("Health");
         maxHealth = obj.GetFloatProperty("maxHealth");
-        Console.WriteLine(health + " " + maxHealth);
         playerIndex = obj.GetIntProperty("playerIndex");
+        ammo = obj.GetFloatProperty("ammo");
+
         collider.isTrigger = true;
-        Pistol pistol = new Pistol();
-        Assault_Rifle assault_Rifle = new Assault_Rifle();
-        AddChild(assault_Rifle);
+
+        weaponManager = new WeaponManager();
+        pistol = new Pistol();
+        AssaultRifle = new Assault_Rifle();
+        AddChild(pistol);
     }
 
     void Update()
@@ -36,7 +49,7 @@ public class Player : Character
         GameObject[] cols = GetCollisions();
         foreach (GameObject c in cols)
         {
-            
+
             if (c is Enemy && invulernableWindowTimer >= invulernableWindow)
             {
                 Enemy enemy = (Enemy)c;
@@ -47,11 +60,46 @@ public class Player : Character
         }
         MovePlayer();
 
+        if (Input.GetKeyDown(Key.TAB))
+        {
+            ChangeWeapon();
+        }
+
         if (IsDead(health))
         {
             LateDestroy();
         }
     }
+
+
+    private void ChangeWeapon()
+    {
+
+
+        WeaponCheck();
+        RemoveChild(activeWeapon);
+        weaponManager.DoSwitchWeapon();
+        WeaponCheck();
+        AddChild(activeWeapon);
+        
+    }
+
+    private void WeaponCheck() 
+    {
+        switch (weaponManager.CurrentWeapon)
+        {
+            case WeaponManager.Weapons.WMPistol:
+                activeWeapon = pistol;
+                break;
+            case WeaponManager.Weapons.WMAssaultRifle:
+                activeWeapon = AssaultRifle;
+                break;
+        }
+
+    }
+
+
+
 
     void MovePlayer()
     {
@@ -72,5 +120,9 @@ public class Player : Character
     {
         invSlot[i] = f;
     }
+
+
+
+
 }
 
