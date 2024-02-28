@@ -19,8 +19,8 @@ public class MyGame : Game
         
         levels[0] = "Assets/Menu.tmx";
         levels[1] = "Assets/Test.tmx";
-        levels[2] = "Assets/SecondLevel";
-        levels[3] = "Assets/ThirdLevel";
+        levels[2] = "Assets/SecondLevel.tmx";
+        levels[3] = "Assets/ThirdLevel.tmx";
         levels[4] = "Assets/GameOver.tmx";
         LoadLevel(levels[0]);
         /*OnAfterStep += LoadLevel;*/
