@@ -9,7 +9,7 @@ public class Player : Character
     readonly float invulernableWindow = 0.5f;
     private float invulernableWindowTimer;
     private int playerIndex;
-
+    MyGame _myGame; // reference to mygame
 
     public int PlayerIndex   // property
     {
@@ -27,6 +27,7 @@ public class Player : Character
         Pistol pistol = new Pistol();
         Assault_Rifle assault_Rifle = new Assault_Rifle();
         AddChild(assault_Rifle);
+        _myGame = (MyGame)game;
     }
 
     void Update()
@@ -50,6 +51,7 @@ public class Player : Character
         if (IsDead(health))
         {
             LateDestroy();
+            _myGame.SetCurrentLevel(4);
         }
     }
 
