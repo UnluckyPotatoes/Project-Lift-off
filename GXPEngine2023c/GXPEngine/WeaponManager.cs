@@ -17,8 +17,6 @@
 
     }
 
-
-
     private void SwitchWeapon(Weapons weapon)
     {
         switch (weapon)
@@ -36,7 +34,6 @@
         }
 
     }
-
 
     public void DoSwitchWeapon()
     {

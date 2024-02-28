@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using GXPEngine;
 
-    internal class Pistol : Weapon
+    public class Pistol : Weapon
     {
     
         public Pistol() : base(1, 0.75f, "Assets/pistol_inHand.png") 
         {
             SetOrigin(width / 2, height / 2);
-    }
+        }
 
         void Update() 
         {         

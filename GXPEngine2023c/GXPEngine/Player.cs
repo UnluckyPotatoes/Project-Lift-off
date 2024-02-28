@@ -9,18 +9,19 @@ public class Player : Character
     readonly float invulernableWindow = 0.5f;
     private float invulernableWindowTimer;
     private int playerIndex;
-    private float ammo; //ammo off the player since all weapons share the same ammo
     private WeaponManager weaponManager;
     private Pistol pistol;
-    private Assault_Rifle AssaultRifle;
+    private Assault_Rifle assaultRifle;
     private Weapon activeWeapon;
+    
+    public Pistol Pistol { get { return pistol; } }
+    public Assault_Rifle AssaultRifle { get { return assaultRifle; } }
 
 
-    public float Ammo
-    {
-        get { return ammo; }
-        set { ammo = value; }
-    }
+
+
+
+
     public int PlayerIndex   // property
     {
         get { return playerIndex; }   // get method
@@ -32,13 +33,11 @@ public class Player : Character
         health = obj.GetFloatProperty("Health");
         maxHealth = obj.GetFloatProperty("maxHealth");
         playerIndex = obj.GetIntProperty("playerIndex");
-        ammo = obj.GetFloatProperty("ammo");
-
+        
         collider.isTrigger = true;
-
         weaponManager = new WeaponManager();
         pistol = new Pistol();
-        AssaultRifle = new Assault_Rifle();
+        assaultRifle = new Assault_Rifle();
         AddChild(pistol);
     }
 
@@ -91,7 +90,7 @@ public class Player : Character
                 activeWeapon = pistol;
                 break;
             case WeaponManager.Weapons.WMAssaultRifle:
-                activeWeapon = AssaultRifle;
+                activeWeapon = assaultRifle;
                 break;
         }
 

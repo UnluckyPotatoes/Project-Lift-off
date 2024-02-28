@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GXPEngine;
 
-    internal class Assault_Rifle : Weapon
+    public class Assault_Rifle : Weapon
     {
         public Assault_Rifle(): base(2, 2f, "Assets/rifle_inHand.png") 
         {

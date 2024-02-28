@@ -13,6 +13,8 @@ public class Weapon : Sprite
     private float fireRate;
     private Player player1;
     private Player player2;
+    private float ammo = 5;
+    public float Ammo { get { return ammo; } }
 
     public float setWeaponDamage(float db)
     {
@@ -40,6 +42,7 @@ public class Weapon : Sprite
         Inhand(px, py);
         if (Input.GetMouseButton(0))
         {
+            
             Action(projectile);
         }
         cooldown -= Time.deltaTime;
@@ -65,9 +68,9 @@ public class Weapon : Sprite
     {
         px = parent.x;
         py = parent.y;
-        if (cooldown <= 0)
-        {   
-            
+        if (cooldown <= 0 && ammo >0)
+        {
+            ammo -= 1;
             Shoot(projectile);
             Console.WriteLine("shoot");
             cooldown = 1000 / fireRate;
