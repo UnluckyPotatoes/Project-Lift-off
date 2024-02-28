@@ -7,8 +7,10 @@ public class UI : Canvas
     {
         PlayerHealthBar player1HealthBar = new PlayerHealthBar();
         PlayerHealthBar player2HealthBar = new PlayerHealthBar();
+        WeaponInventory player1WeaponInventory = new WeaponInventory();
+        WeaponInventory player2WeaponInventory = new WeaponInventory();
         AddChild(player1HealthBar);
-        
+        AddChild(player1WeaponInventory);
 
     }
 }
