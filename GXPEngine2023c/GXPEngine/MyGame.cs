@@ -11,13 +11,16 @@ public class MyGame : Game
     private Menu menu;
     private float player1Health;
     private float player2health;
-    private string newLevel;
+    private string[] levels = new string[2]; //array for levels (if you add more levels, you will have to increase the number)
+    private int currentLevel = 0; // levels always start from 0
     
     public MyGame() : base(1920, 1080, false)
     {
         
-        newLevel = "Assets/Test.tmx";
-        OnAfterStep += LoadLevel;
+        levels[0] = "Assets/Menu.tmx";
+        levels[1] = "Assets/Test.tmx";
+        LoadLevel(levels[0]);
+        /*OnAfterStep += LoadLevel;*/
     }
 
     void Update()
@@ -32,47 +35,44 @@ public class MyGame : Game
             Console.WriteLine(currentFps);
             Console.WriteLine(GetDiagnostics());
         }
-    }
-
-
-    void DestroyLevel()
-    {
-        List<GameObject> children = GetChildren();
-        for (int i = children.Count - 1; i >= 0; i--)
+        if (Input.GetKeyUp(Key.ENTER)) // instead of changing the level in menu class it changes in here (menu class will be used for the button)
         {
-            children[i].Destroy();
+            if (currentLevel == 0)
+            {
+                currentLevel = 1;
+                LoadLevel(levels[currentLevel]); // deletes current level and loads the new given level
+            }
         }
     }
 
-
-    public void MoveToLevel(string levelName)
-    {
-        newLevel = levelName;
-    }
-
-    void LoadLevel()
-    {
-        if (newLevel != null)
-        {
-            DestroyLevel();
-            AddChild(new Level(newLevel));
-            AddChild(new UI(width, height));
-            newLevel = null;
-        }
-    }
-
-
-
-    void LoadInfo()
+/*    void LoadInfo()
     {
         if (player1 != null)
         {
             player1.health = player1Health;
         }
+    }*/
+
+
+    void LoadLevel(string name) // level loader
+    {
+        List<GameObject> children = GetChildren();
+
+        foreach (GameObject child in children)
+        {
+            child.Destroy();
+        }
+        Level levels = new Level(name);
+        AddChild(levels);
+        if (currentLevel >= 1)
+        {
+            ui = new UI(width, height);
+            AddChild(ui);
+        }
+
+
     }
 
-
-    
 
     static void Main()                          // Main() is the first method that's called when the program is run
     {
