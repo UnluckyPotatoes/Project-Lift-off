@@ -11,7 +11,7 @@ public class MyGame : Game
     private Menu menu;
     private float player1Health;
     private float player2health;
-    private string[] levels = new string[2]; //array for levels (if you add more levels, you will have to increase the number)
+    private string[] levels = new string[5]; //array for levels (if you add more levels, you will have to increase the number)
     private int currentLevel = 0; // levels always start from 0
     
     public MyGame() : base(1920, 1080, false)
@@ -19,6 +19,9 @@ public class MyGame : Game
         
         levels[0] = "Assets/Menu.tmx";
         levels[1] = "Assets/Test.tmx";
+        levels[2] = "Assets/SecondLevel";
+        levels[3] = "Assets/ThirdLevel";
+        levels[4] = "Assets/GameOver.tmx";
         LoadLevel(levels[0]);
         /*OnAfterStep += LoadLevel;*/
     }
