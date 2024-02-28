@@ -17,9 +17,9 @@ public class Menu : EasyDraw
         this.DrawSprite(button);
 
 
-        if (Input.GetKey(Key.ENTER)); // idea is if you press enter, you will play the game, i just need an easy blinking anim for the button and a background
+        /*if (Input.GetKey(Key.ENTER)); // idea is if you press enter, you will play the game, i just need an easy blinking anim for the button and a background
         {
             
-        }
+        }*/ // already used this in main
     }
 }

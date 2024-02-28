@@ -96,6 +96,11 @@
     <Compile Include="Player.cs" />
     <Compile Include="PlayerHealthBar.cs" />
     <Compile Include="Projectile.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UI.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="WeaponInventory.cs" />
@@ -103,5 +108,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

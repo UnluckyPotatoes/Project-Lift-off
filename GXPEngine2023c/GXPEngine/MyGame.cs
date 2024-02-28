@@ -5,31 +5,36 @@ using System.Collections.Generic;
 using TiledMapParser;
 public class MyGame : Game
 {
-    private Player player1;
-    private Player player2;
     private UI ui;
-    private Menu menu;
-    private float player1Health;
-    private float player2health;
-    private string[] levels = new string[2]; //array for levels (if you add more levels, you will have to increase the number)
+    public string[] levels = new string[5]; //array for levels (if you add more levels, you will have to increase the number)
     private int currentLevel = 0; // levels always start from 0
-    
+
+    public int GetCurrentLevel() //returns current level
+    {
+        return currentLevel;
+    }
+    public void SetCurrentLevel(int _value) //sets new level and deletes old level
+    {
+        currentLevel = _value;
+        LoadLevel(levels[currentLevel]);
+    }
+
+
+
     public MyGame() : base(1920, 1080, false)
     {
-        
+
         levels[0] = "Assets/Menu.tmx";
         levels[1] = "Assets/Test.tmx";
+        levels[2] = "Assets/SecondLevel.tmx";
+        levels[3] = "Assets/ThirdLevel.tmx";
+        levels[4] = "Assets/GameOver.tmx";
         LoadLevel(levels[0]);
-        /*OnAfterStep += LoadLevel;*/
     }
 
     void Update()
     {
-        if (player1 != null)
-        {
-            player1Health = player1.health;
-            player2health = player2.health;
-        }
+
         if (Input.GetKey(Key.LEFT_SHIFT))
         {
             Console.WriteLine(currentFps);
@@ -39,22 +44,17 @@ public class MyGame : Game
         {
             if (currentLevel == 0)
             {
-                currentLevel = 1;
-                LoadLevel(levels[currentLevel]); // deletes current level and loads the new given level
+                SetCurrentLevel(1); // deletes current level and loads the new given level
+            }
+            if (currentLevel == 4)
+            {
+                SetCurrentLevel(1);
             }
         }
     }
 
-/*    void LoadInfo()
-    {
-        if (player1 != null)
-        {
-            player1.health = player1Health;
-        }
-    }*/
 
-
-    void LoadLevel(string name) // level loader
+    private void LoadLevel(string name) // level loader
     {
         List<GameObject> children = GetChildren();
 

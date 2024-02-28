@@ -1,4 +1,4 @@
-﻿using GXPEngine;
+using GXPEngine;
 using System;
 using TiledMapParser;
 
@@ -16,10 +16,7 @@ public class Player : Character
     
     public Pistol Pistol { get { return pistol; } }
     public Assault_Rifle AssaultRifle { get { return assaultRifle; } }
-
-
-
-
+    MyGame _myGame; // reference to mygame
 
 
     public int PlayerIndex   // property
@@ -35,6 +32,7 @@ public class Player : Character
         playerIndex = obj.GetIntProperty("playerIndex");
         
         collider.isTrigger = true;
+        _myGame = (MyGame)game;
         weaponManager = new WeaponManager();
         pistol = new Pistol();
         assaultRifle = new Assault_Rifle();
@@ -67,6 +65,7 @@ public class Player : Character
         if (IsDead(health))
         {
             LateDestroy();
+            _myGame.SetCurrentLevel(4);
         }
     }
 
