@@ -29,13 +29,13 @@ public class Enemy : Character
     public float GetDamage() { return damage; }
 
 
-    public Enemy(TiledObject obj = null) : base("Assets/Enemy.png", 1, 1)
+    public Enemy() : base("Assets/Enemy.png", 1, 1)
     {
-        startX = obj.X;
-        startY = obj.Y;
-        health = obj.GetFloatProperty("Health");
-        damage = obj.GetFloatProperty("damage");
-        maxHealth = health;
+
+
+
+
+
         collider.isTrigger = true;
         EnemyHealthInfo enemyHealthInfo = new EnemyHealthInfo();
         AddChild(enemyHealthInfo);
@@ -157,7 +157,7 @@ public class Enemy : Character
     }
 
 
-    private void Update()
+    private void update()
     {
         BehaviourManager();
 

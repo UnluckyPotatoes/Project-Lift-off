@@ -40,15 +40,15 @@ public class WeaponInventory : EasyDraw
     }
     private void ShowWeapons()
     {
-        Sprite Pistol = new Sprite("Assets/pistol_inInventory.png", false, false) { y = 160, x = 160 };
+        Sprite Pistol = new Sprite("Assets/pistol_inInventory.png", false, false) { y = 160, x = 120 };
         Pistol.SetOrigin(Pistol.width / 2, Pistol.height / 2);
         AddChild(Pistol);
 
-        Sprite AssaultRifle = new Sprite("Assets/rifle_inInventory.png", false, false) { y = 320, x = 160 };
+        Sprite AssaultRifle = new Sprite("Assets/rifle_inInventory.png", false, false) { y = 250, x = 120 };
         AssaultRifle.SetOrigin(AssaultRifle.width / 2, AssaultRifle.height / 2);
         AddChild(AssaultRifle);
 
-        Sprite Shotgun = new Sprite("Assets/shotgun_inInventory.png", false, false) { y = 480, x = 160 };
+        Sprite Shotgun = new Sprite("Assets/shotgun_inInventory.png", false, false) { y = 340, x = 120 };
         Shotgun.SetOrigin(Shotgun.width / 2, Shotgun.height / 2);
         AddChild(Shotgun);
     }
@@ -58,8 +58,8 @@ public class WeaponInventory : EasyDraw
     {
         Text(" ", true);
         Text("x" + weapon1.Ammo, 240, 160);
-        Text("x" + weapon2.Ammo, 240, 320);
-        Text("x" + weapon3.Ammo, 240, 480);
+        Text("x" + weapon2.Ammo, 240, 250);
+        Text("x" + weapon3.Ammo, 240, 340);
     }
 
     void Update()
