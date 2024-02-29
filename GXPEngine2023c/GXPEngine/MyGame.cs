@@ -8,6 +8,7 @@ public class MyGame : Game
     private UI ui;
     public string[] levels = new string[5]; //array for levels (if you add more levels, you will have to increase the number)
     private int currentLevel = 0; // levels always start from 0
+    private Sound levelSwitchSound = new Sound("Assets/Level_entry_and_exit_sound.wav");
 
     public int GetCurrentLevel() //returns current level
     {
@@ -44,14 +45,17 @@ public class MyGame : Game
         {
             if (currentLevel == 0)
             {
+                levelSwitchSound.Play();
                 SetCurrentLevel(1); // deletes current level and loads the new given level
             }
             if (currentLevel == 4)
             {
+                levelSwitchSound.Play();
                 SetCurrentLevel(1);
             }
         }
     }
+
 
 
     private void LoadLevel(string name) // level loader
@@ -64,15 +68,27 @@ public class MyGame : Game
         }
         Level levels = new Level(name);
         AddChild(levels);
-        if (currentLevel >= 1)
+        if (currentLevel >= 1 && currentLevel != 4)
         {
             ui = new UI(width, height);
             AddChild(ui);
         }
+        Sound steppingSound;
+        switch (currentLevel)
+        {
+            case 2:
+                steppingSound = new Sound("Assets/GrassfootstepLevel_1.wav");
+                break;
+            case 1: case 3:
+                steppingSound = new Sound("Assets/Rock_Footsteps.wav");
+                break;
+            default:
+                steppingSound = null;
+                break;
 
-
+        }
+        if (steppingSound != null) { FindObjectOfType<Player>().ApplySound(steppingSound); }
     }
-
 
     static void Main()                          // Main() is the first method that's called when the program is run
     {

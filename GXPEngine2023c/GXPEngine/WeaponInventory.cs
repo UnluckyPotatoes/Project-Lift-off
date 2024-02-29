@@ -13,8 +13,8 @@ public class WeaponInventory : EasyDraw
     private Weapon weapon1;
     private Weapon weapon2;
     private Weapon weapon3;
-    
-    
+
+
 
     public WeaponInventory() : base(1920, 1080, false)
     {
@@ -25,8 +25,8 @@ public class WeaponInventory : EasyDraw
 
     private void FindWeapons()
     {
-       player = game.FindObjectOfType<Player>();
-        if (player != null) 
+        player = game.FindObjectOfType<Player>();
+        if (player != null)
         {
             weapon1 = player.Pistol;
             weapon2 = player.AssaultRifle;
@@ -36,18 +36,18 @@ public class WeaponInventory : EasyDraw
 
 
 
-        
+
     }
     private void ShowWeapons()
     {
         Sprite Pistol = new Sprite("Assets/pistol_inInventory.png", false, false) { y = 160, x = 160 };
         Pistol.SetOrigin(Pistol.width / 2, Pistol.height / 2);
         AddChild(Pistol);
-        
+
         Sprite AssaultRifle = new Sprite("Assets/rifle_inInventory.png", false, false) { y = 320, x = 160 };
         AssaultRifle.SetOrigin(AssaultRifle.width / 2, AssaultRifle.height / 2);
         AddChild(AssaultRifle);
-        
+
 
     }
 
@@ -59,13 +59,13 @@ public class WeaponInventory : EasyDraw
         Text("x" + weapon2.Ammo, 240, 320);
     }
 
-    void Update() 
-    { 
+    void Update()
+    {
         UpdateWeapons();
     }
-    
 
-    
+
+
 
 
 }
