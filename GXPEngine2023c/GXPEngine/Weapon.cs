@@ -45,10 +45,8 @@ public class Weapon : Sprite
         Inhand(px, py);
 
         if (Input.GetKeyDown(Key.SPACE))
-        {
-            Action(projectile);
-            pistolShot.Play();
-            if (this is Pistol) { Action(1); }
+        {      
+            if (this is Pistol) { Action(1); pistolShot.Play(); }
             if (this is Assault_Rifle) { Action(1); }
             if (this is Shotgun) { Action(5); }
         }
@@ -69,7 +67,8 @@ public class Weapon : Sprite
         float yDis = py - mouse.y;
 
         rotation = Mathf.Atan2(xDis, yDis) * 180f / Mathf.PI;
-        r = (rotation - 90) * Mathf.PI / 180f;
+        r = (rotation - 90) 
+            * Mathf.PI / 180f;
         SetXY(256 * Mathf.Cos(r), 256 * Mathf.Sin(r));
     }
 
