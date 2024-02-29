@@ -26,6 +26,7 @@ public class Enemy : Character
     private float cooldownX;
     private float cooldownY;
     private float movementAdjustment;
+    UI ui = null;
     public float GetDamage() { return damage; }
 
 
@@ -164,6 +165,7 @@ public class Enemy : Character
 
         if (IsDead(health))
         {
+            ui.SetScore(ui._score ++);
             Destroy();
         }
     }
