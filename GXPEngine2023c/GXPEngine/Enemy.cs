@@ -33,9 +33,8 @@ public class Enemy : Character
     public Enemy() : base("Assets/Enemy.png", 1, 1)
     {
         Console.WriteLine("made in" + parent);
-        health = 10f;
-        maxHealth = 10f;
-        scale = 10f;
+        health = 1f;
+        maxHealth = 1f;
         collider.isTrigger = true;
         EnemyHealthInfo enemyHealthInfo = new EnemyHealthInfo();
         AddChild(enemyHealthInfo);
