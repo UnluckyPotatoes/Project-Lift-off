@@ -17,6 +17,12 @@ public class Player : Character
     private Sound currentSound;
     private float stepTimer;
     private float stepTimerInterval = 0.5f;
+    private int pistolAmmoGained = 1;
+    private int assaultRifleAmmoGained = 1;
+    private int shotgunAmmoGained = 1;
+
+
+
 
     public Pistol Pistol { get { return pistol; } }
     public Assault_Rifle AssaultRifle { get { return assaultRifle; } }
@@ -63,6 +69,27 @@ public class Player : Character
                 Enemy enemy = (Enemy)c;
                 health -= enemy.GetDamage();
                 invulernableWindowTimer = 0;
+            }
+
+
+
+            if (c is AmmoCase) 
+            { 
+                AmmoCase am = (AmmoCase)c;
+                switch (am.GetAmmoType)
+                {
+                    case 0:
+                        pistol.Ammo += pistolAmmoGained;
+ 
+                    break;
+                    case 1:
+                        assaultRifle.Ammo += assaultRifleAmmoGained;
+                    break;
+                    case 2:
+                        shotgun.Ammo += shotgunAmmoGained;
+                    break;
+                }
+                am.Destroy();
             }
 
         }
