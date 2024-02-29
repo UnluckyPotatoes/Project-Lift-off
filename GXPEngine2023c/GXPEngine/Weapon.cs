@@ -14,7 +14,8 @@ public class Weapon : Sprite
     private Player player2; // is not being used
     private float ammo = 5;
     private Sound pistolShot = new Sound("Assets/Gunshot1Pistol.wav");
-    public float Ammo { get { return ammo; } }
+    public float Ammo { get { return ammo; } //calls ammo amount
+                        set { ammo = value; } }
 
     public float setWeaponDamage(float db) // is not being used
     {

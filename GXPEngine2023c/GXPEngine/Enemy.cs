@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using GXPEngine;
@@ -27,6 +28,9 @@ public class Enemy : Character
     private float cooldownX;
     private float cooldownY;
     private float movementAdjustment;
+    private int ammoType;
+    AmmoCase ammoCase;
+    private string ammoCaseImg;
     public float GetDamage() { return damage; }
 
 
@@ -152,9 +156,16 @@ public class Enemy : Character
 
 
         }
-        
+
     }
 
+
+
+    private void generateAmmoType() 
+    { 
+        Random random = new Random();
+        ammoType = random.Next(0,3);
+    }
 
     private void Update()
     {
@@ -163,6 +174,24 @@ public class Enemy : Character
 
         if (IsDead(health))
         {
+            generateAmmoType();
+            switch (ammoType) 
+            {
+                case 0:
+                    ammoCaseImg = "Assets/pistol_AmmoCase.png";
+                break;
+                case 1:
+                    ammoCaseImg = "Assets/rifle_AmmoCase.png";
+                    break;
+                case 2:
+                    ammoCaseImg = "Assets/shotgun_AmmoCase.png";
+                    break;
+            
+            
+            }
+            ammoCase = new AmmoCase(ammoCaseImg, ammoType);
+            ammoCase.x = x; ammoCase.y = y;
+            parent.AddChild(ammoCase);
             Console.WriteLine("destroy enemy");
             Destroy();
         }
