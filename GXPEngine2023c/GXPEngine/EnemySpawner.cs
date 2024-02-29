@@ -8,7 +8,7 @@ internal class EnemySpawner : Sprite
 {
 
     private int lives;
-    private int spawnCap;
+    private int spawnCap = 10;
     private int spawninterval;
     private int spawnAmount;
     private float timer;
@@ -20,7 +20,6 @@ internal class EnemySpawner : Sprite
     {
         
         lives = obj.GetIntProperty("lives");
-        spawnCap = obj.GetIntProperty("spawnCap");
         spawninterval = obj.GetIntProperty("spawnInterval"); // time (in miliseconds) between each spawn cycle
         spawnAmount = obj.GetIntProperty("spawnAmount");
 
@@ -35,14 +34,18 @@ internal class EnemySpawner : Sprite
     {
         Enemy enemy = new Enemy();
         enemy.x = x; enemy.y = y;
-        parent.AddChild(enemy);
-        Console.WriteLine(enemy.parent);
+        if(parent != null) 
+        {
+            parent.AddChild(enemy);
+        }
+        
+        
     }
 
     void Update() 
     {
         GameObject[] enemyCount = game.FindObjectsOfType<Enemy>();
-        Console.WriteLine(enemyCount.Length);
+        
         timer += Time.deltaTime;
         if (timer >= spawninterval && enemyCount.Length < spawnCap) 
         {
@@ -54,7 +57,6 @@ internal class EnemySpawner : Sprite
             }
 
             lives--;
-
 
         }
 

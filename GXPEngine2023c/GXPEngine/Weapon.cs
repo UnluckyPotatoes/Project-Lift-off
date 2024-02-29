@@ -8,11 +8,13 @@ public class Weapon : Sprite
     private float r; // rotation
     private float px; // playerX
     private float py; // playerY
+    private int range;
+    private float speed;
     private float damage;
     private float fireRate;
     private Player player1; // is not being used
     private Player player2; // is not being used
-    private float ammo = 5;
+    private float ammo = 15;
     private Sound pistolShot = new Sound("Assets/Gunshot1Pistol.wav");
     public float Ammo { get { return ammo; } //calls ammo amount
                         set { ammo = value; } }
@@ -28,10 +30,12 @@ public class Weapon : Sprite
         return fireRate;
     }
 
-    public Weapon(float wDamage, float wFireRate, string weaponName) : base(weaponName, false, false)
+    public Weapon(int wRange, float wSpeed, float wDamage, float wFireRate, string weaponName) : base(weaponName, false, false)
     {
 
         SetOrigin(width / 2, height / 2);
+        range = wRange;
+        speed = wSpeed;
         damage = wDamage;
         fireRate = wFireRate;
 
@@ -45,12 +49,15 @@ public class Weapon : Sprite
         /*pistolShot = new Sound("Assets/Gunshot1Pistol.wav");*/
         Inhand(px, py);
 
-        if (Input.GetKeyDown(Key.SPACE))
-        {      
-            if (this is Pistol) { Action(1); pistolShot.Play(); }
-            if (this is Assault_Rifle) { Action(1); }
-            if (this is Shotgun) { Action(5); }
-        }
+
+
+
+
+        
+            if (this is Pistol && Input.GetMouseButtonDown(0)) { Action(1); pistolShot.Play(); }
+            if (this is Assault_Rifle && Input.GetMouseButton(0)) { Action(1); }
+            if (this is Shotgun && Input.GetMouseButtonDown(0)) { Action(5); }
+        
 
         cooldown -= Time.deltaTime;
 
@@ -101,7 +108,7 @@ public class Weapon : Sprite
                         rot = rotation - 20;
                         break;
                 }
-                Shoot(new Bullet(rot));
+                Shoot(new Bullet(rot, range, damage, speed));
             }
             cooldown = 1000 / fireRate;
         }

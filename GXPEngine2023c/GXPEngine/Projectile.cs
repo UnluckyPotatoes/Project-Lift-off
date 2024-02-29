@@ -13,6 +13,7 @@ public class Projectile : Sprite
 
     public Projectile(string projectileName, int bRange, float bDamage, float bSpeed) : base(projectileName)
     {
+        scale = 0.5f;
         SetOrigin(width / 2, height / 2);
         range = bRange;
         damage = bDamage;
@@ -24,7 +25,7 @@ public class Projectile : Sprite
         Moving();
     }
 
-    void Moving()
+    private void Moving()
     {
         //Movement of projectile
         Move(0, -speed);
@@ -47,7 +48,7 @@ public class Projectile : Sprite
         }
     }
 
-    Boolean RangeCheck()
+    private Boolean RangeCheck()
     {
         if (x > beginX + 16 * range || x < beginX - 16 * range ||
             y > beginY + 16 * range || y < beginY - 16 * range)
@@ -59,7 +60,7 @@ public class Projectile : Sprite
 
    
 
-    void End()
+    private void End()
     {
         Destroy();
     }

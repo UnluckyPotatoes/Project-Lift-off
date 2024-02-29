@@ -17,9 +17,9 @@ public class Player : Character
     private Sound currentSound;
     private float stepTimer;
     private float stepTimerInterval = 0.5f;
-    private int pistolAmmoGained = 1;
-    private int assaultRifleAmmoGained = 1;
-    private int shotgunAmmoGained = 1;
+    private int pistolAmmoGained = 4;
+    private int assaultRifleAmmoGained = 6;
+    private int shotgunAmmoGained = 2;
 
 
 
@@ -58,6 +58,7 @@ public class Player : Character
         {
             health -= 10;
         }
+
         Animate(0.085f);
         invulernableWindowTimer += (Time.deltaTime / 1000f);
         GameObject[] cols = GetCollisions();
