@@ -25,11 +25,11 @@ public class MyGame : Game
     public MyGame() : base(1920, 1080, false)
     {
 
-        levels[0] = "Assets/Menu.tmx";
-        levels[1] = "Assets/Test.tmx";
-        levels[2] = "Assets/SecondLevel.tmx";
-        levels[3] = "Assets/ThirdLevel.tmx";
-        levels[4] = "Assets/GameOver.tmx";
+        levels[0] = "Assets/Level_Menu.tmx";
+        levels[1] = "Assets/Level_One.tmx";
+        levels[2] = "Assets/Level_Two.tmx";
+        levels[3] = "Assets/Level_Three.tmx";
+        levels[4] = "Assets/Level_Game_Over.tmx";
         LoadLevel(levels[0]);
     }
 
