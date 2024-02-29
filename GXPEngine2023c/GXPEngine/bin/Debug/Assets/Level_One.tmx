@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="120" height="68" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="4">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="120" height="68" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="7">
  <tileset firstgid="1" name="Props.forest" tilewidth="16" tileheight="16" tilecount="625" columns="25">
   <image source="Props.forest.png" width="400" height="400"/>
  </tileset>
@@ -305,6 +305,30 @@
  </objectgroup>
  <objectgroup id="7" name="Spawners">
   <object id="2" type="EnemySpawner" x="352" y="544" width="32" height="32">
+   <properties>
+    <property name="lives" type="int" value="10"/>
+    <property name="spawnAmount" type="int" value="1"/>
+    <property name="spawnCap" type="int" value="5"/>
+    <property name="spawnInterval" type="int" value="1000"/>
+   </properties>
+  </object>
+  <object id="4" type="EnemySpawner" x="944" y="1024" width="32" height="32">
+   <properties>
+    <property name="lives" type="int" value="10"/>
+    <property name="spawnAmount" type="int" value="1"/>
+    <property name="spawnCap" type="int" value="5"/>
+    <property name="spawnInterval" type="int" value="1000"/>
+   </properties>
+  </object>
+  <object id="5" type="EnemySpawner" x="1536" y="544" width="32" height="32">
+   <properties>
+    <property name="lives" type="int" value="10"/>
+    <property name="spawnAmount" type="int" value="1"/>
+    <property name="spawnCap" type="int" value="5"/>
+    <property name="spawnInterval" type="int" value="1000"/>
+   </properties>
+  </object>
+  <object id="6" type="EnemySpawner" x="944" y="32" width="32" height="32">
    <properties>
     <property name="lives" type="int" value="10"/>
     <property name="spawnAmount" type="int" value="1"/>

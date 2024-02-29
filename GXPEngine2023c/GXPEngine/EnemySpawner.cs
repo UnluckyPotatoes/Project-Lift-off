@@ -1,5 +1,6 @@
 ﻿using GXPEngine;
 using System;
+using System.Collections.Generic;
 using System.Drawing.Text;
 using TiledMapParser;
 
@@ -12,8 +13,10 @@ internal class EnemySpawner : Sprite
     private int spawnAmount;
     private float timer;
     private Level level;
+    
+    
 
-    public EnemySpawner(TiledObject obj = null) : base("Assets/EnemySpawner.png", false)
+    public EnemySpawner(TiledObject obj = null) : base("Assets/EnemySpawner.png", false, false)
     {
         
         lives = obj.GetIntProperty("lives");
@@ -38,8 +41,10 @@ internal class EnemySpawner : Sprite
 
     void Update() 
     {
+        GameObject[] enemyCount = game.FindObjectsOfType<Enemy>();
+        Console.WriteLine(enemyCount.Length);
         timer += Time.deltaTime;
-        if (timer >= spawninterval) 
+        if (timer >= spawninterval && enemyCount.Length < spawnCap) 
         {
             timer = 0;
 
@@ -47,6 +52,7 @@ internal class EnemySpawner : Sprite
             {
                 spawnEnemy();
             }
+
             lives--;
 
 

@@ -35,11 +35,9 @@ public class UI : Canvas
 
     }
 
-
     void Update() 
     {
         score.Text(String.Format("Score: " + _score), true);
-
 
     }
         

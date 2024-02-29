@@ -117,7 +117,7 @@ public class Enemy : Character
             directionToStart.Normalize();
 
 
-            if (distanceToTargetPlayer < 1000f && distanceToTargetPlayer > 16f)
+            if (distanceToTargetPlayer < 10000f && distanceToTargetPlayer > 16f)
             {
                 currentState = EnemyState.Chase;
             }
@@ -127,7 +127,7 @@ public class Enemy : Character
                 currentState = EnemyState.Attack;
             }
             else
-        if (distanceToTargetPlayer > 1000f)
+        if (distanceToTargetPlayer > 10000f)
             {
                 currentState = EnemyState.Return;
                 if (distanceToTargetStart < 0.25f)
