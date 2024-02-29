@@ -14,6 +14,7 @@ public class Weapon : Sprite
     private Player player1; // is not being used
     private Player player2; // is not being used
     private float ammo = 5;
+    private Sound pistolShot = new Sound("Assets/Gunshot1Pistol.wav");
     public float Ammo { get { return ammo; } }
 
     public float setWeaponDamage(float db) // is not being used
@@ -33,17 +34,18 @@ public class Weapon : Sprite
         SetOrigin(width / 2, height / 2);
         damage = d;
         fireRate = f;
-        
+
     }
 
     public float getWeaponDamage() { return damage; } // is not being used
     public void Updater(float px, float py, Projectile projectile)
     {
+        /*pistolShot = new Sound("Assets/Gunshot1Pistol.wav");*/
         Inhand(px, py);
         if (Input.GetMouseButton(0))
         {
-            
             Action(projectile);
+            pistolShot.Play();
         }
         cooldown -= Time.deltaTime;
     }
@@ -68,7 +70,7 @@ public class Weapon : Sprite
     {
         px = parent.x;
         py = parent.y;
-        if (cooldown <= 0 && ammo >0)
+        if (cooldown <= 0 && ammo > 0)
         {
             ammo -= 1;
             Shoot(projectile);

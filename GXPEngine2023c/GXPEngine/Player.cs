@@ -13,7 +13,10 @@ public class Player : Character
     private Pistol pistol;
     private Assault_Rifle assaultRifle;
     private Weapon activeWeapon;
-    
+    private Sound currentSound;
+    private float stepTimer;
+    private float stepTimerInterval = 0.5f;
+
     public Pistol Pistol { get { return pistol; } }
     public Assault_Rifle AssaultRifle { get { return assaultRifle; } }
     MyGame _myGame; // reference to mygame
@@ -41,6 +44,11 @@ public class Player : Character
 
     void Update()
     {
+        if (Input.GetKeyDown(Key.P)) // to insta kill player for testing 
+        {
+            health -= 10;
+        }
+        Console.WriteLine(stepTimer);
         Animate(0.085f);
         invulernableWindowTimer += (Time.deltaTime / 1000f);
         GameObject[] cols = GetCollisions();
@@ -65,6 +73,7 @@ public class Player : Character
         if (IsDead(health))
         {
             LateDestroy();
+            // play gameOver sound
             _myGame.SetCurrentLevel(4);
         }
     }
@@ -95,8 +104,16 @@ public class Player : Character
 
     }
 
+    public void ApplySound(Sound steppingSound)
+    {
+        currentSound = steppingSound;
+        Console.WriteLine(steppingSound);
+    }
 
-
+    void Step()
+    {
+        currentSound.Play();
+    }
 
     void MovePlayer()
     {
@@ -110,6 +127,23 @@ public class Player : Character
 
         MoveUntilCollision(px, 0);
         MoveUntilCollision(0, py);
+        if (px != 0 || py != 0)
+        {
+            if (stepTimer == 0)
+            {
+                Step();
+            }
+            stepTimer += Time.deltaTime / 1000f;
+            if (stepTimer >= stepTimerInterval)
+            {
+                stepTimer = 0;
+                
+            }
+        }
+        else
+        {
+            stepTimer = 0;
+        }
     }
 
 
