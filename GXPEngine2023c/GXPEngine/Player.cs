@@ -80,7 +80,6 @@ public class Player : Character
                 {
                     case 0:
                         pistol.Ammo += pistolAmmoGained;
- 
                     break;
                     case 1:
                         assaultRifle.Ammo += assaultRifleAmmoGained;

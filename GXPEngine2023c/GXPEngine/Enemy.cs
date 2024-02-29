@@ -31,7 +31,7 @@ public class Enemy : Character
     private int ammoType;
     AmmoCase ammoCase;
     private string ammoCaseImg;
-    UI ui = null;
+    UI ui;
     public float GetDamage() { return damage; }
 
 
@@ -42,6 +42,9 @@ public class Enemy : Character
         maxHealth = 1f;
         collider.isTrigger = true;
         EnemyHealthInfo enemyHealthInfo = new EnemyHealthInfo();
+
+        ui = game.FindObjectOfType<UI>();
+
         AddChild(enemyHealthInfo);
     }
     private EnemyState currentState;
@@ -194,7 +197,8 @@ public class Enemy : Character
             ammoCase.x = x; ammoCase.y = y;
             parent.AddChild(ammoCase);
             Console.WriteLine("destroy enemy");
-            ui.SetScore(ui._score ++);
+            ui._Score = 1;
+            //ui.SetScore(ui._Score ++);
             Destroy();
         }
     }

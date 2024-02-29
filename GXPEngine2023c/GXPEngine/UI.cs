@@ -10,7 +10,10 @@ public class UI : Canvas
 {
     EasyDraw score;
     Font upheaval;
-    public int _score = 0;
+    private int _score;
+    public int _Score { get { return _score; }
+                  set { _score += value; }
+    }
 
     public UI(int width, int height) : base(width, height, false)
     {
@@ -26,14 +29,19 @@ public class UI : Canvas
         score.TextFont(upheaval);
         score.TextAlign(CenterMode.Min, CenterMode.Center);
         score.Fill(255);
-        score.Text("score: 0");
-        score.SetXY(1635, 15);
+        score.Text("Score: " + _score);
+        score.SetXY(1625, 15);
         AddChild(score);
 
     }
-        public void SetScore(int scoreCount)
-        {
-            score.Text(String.Format("Health: " + scoreCount), true);
-        }
+
+
+    void Update() 
+    {
+        score.Text(String.Format("Score: " + _score), true);
+
+
+    }
+        
 }
 
