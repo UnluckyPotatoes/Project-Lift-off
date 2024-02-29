@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -31,6 +31,7 @@ public class Enemy : Character
     private int ammoType;
     AmmoCase ammoCase;
     private string ammoCaseImg;
+    UI ui = null;
     public float GetDamage() { return damage; }
 
 
@@ -193,6 +194,7 @@ public class Enemy : Character
             ammoCase.x = x; ammoCase.y = y;
             parent.AddChild(ammoCase);
             Console.WriteLine("destroy enemy");
+            ui.SetScore(ui._score ++);
             Destroy();
         }
     }
