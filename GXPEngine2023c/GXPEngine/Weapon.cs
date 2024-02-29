@@ -1,7 +1,6 @@
 ﻿using GXPEngine;
 using GXPEngine.Core;
 using System;
-using TiledMapParser;
 
 public class Weapon : Sprite
 {
@@ -27,25 +26,31 @@ public class Weapon : Sprite
         return fireRate;
     }
 
-    public Weapon(float d, float f, string weaponName) : base(weaponName, false, false)
+    public Weapon(float wDamage, float wFireRate, string weaponName) : base(weaponName, false, false)
     {
 
         SetOrigin(width / 2, height / 2);
-        damage = d;
-        fireRate = f;
-        
+        damage = wDamage;
+        fireRate = wFireRate;
+
     }
 
     public float getWeaponDamage() { return damage; }
-    public void Updater(float px, float py, Projectile projectile)
+
+
+    public void Updater(float px, float py)
     {
         Inhand(px, py);
-        if (Input.GetMouseButton(0))
+
+        if (Input.GetKeyDown(Key.SPACE))
         {
-            
-            Action(projectile);
+            if (this is Pistol) { Action(1); }
+            if (this is Assault_Rifle) { Action(1); }
+            if (this is Shotgun) { Action(5); }
         }
+
         cooldown -= Time.deltaTime;
+
     }
 
     void Inhand(float px, float py)
@@ -64,15 +69,36 @@ public class Weapon : Sprite
         SetXY(256 * Mathf.Cos(r), 256 * Mathf.Sin(r));
     }
 
-    void Action(Projectile projectile)
+    void Action(int pellets)
     {
+        float rot = rotation;
         px = parent.x;
         py = parent.y;
-        if (cooldown <= 0 && ammo >0)
+        if (cooldown <= 0 && ammo > 0)
         {
             ammo -= 1;
-            Shoot(projectile);
-            Console.WriteLine("shoot");
+            for (int i = 0; i < pellets; i++) 
+            {
+                switch (i) 
+                { 
+                    case 0:
+                        rot = rotation;
+                    break;
+                    case 1:
+                        rot = rotation + 10;
+                        break;
+                    case 2:
+                        rot = rotation - 10;
+                        break;
+                    case 3:
+                        rot = rotation + 20;
+                        break;
+                    case 4:
+                        rot = rotation - 20;
+                        break;
+                }
+                Shoot(new Bullet(rot));
+            }
             cooldown = 1000 / fireRate;
         }
     }

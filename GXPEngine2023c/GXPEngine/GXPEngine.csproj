@@ -92,6 +92,7 @@
     <Compile Include="GXPEngine\FMOD\FMODSoundSystem.cs" />
     <Compile Include="GXPEngine\SoLoud\Soloud.cs" />
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
+    <Compile Include="Pickup.cs" />
     <Compile Include="Pistol.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerHealthBar.cs" />
@@ -101,6 +102,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Shotgun.cs" />
     <Compile Include="UI.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="WeaponInventory.cs" />

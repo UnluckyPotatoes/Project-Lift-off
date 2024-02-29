@@ -9,6 +9,6 @@ using GXPEngine;
     {
         public Pickup(string img) : base(img)
         {
-            Collider.isTrigger = true;
+            collider.isTrigger = true;
         }
     }

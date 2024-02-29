@@ -16,7 +16,7 @@ using GXPEngine;
         void Update() 
         {         
             if (parent != null) {
-                Updater(parent.x, parent.y, new Bullet(rotation));
+                Updater(parent.x, parent.y);
             } 
         }
     }

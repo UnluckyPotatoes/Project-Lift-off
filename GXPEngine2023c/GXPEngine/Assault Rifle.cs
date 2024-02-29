@@ -7,7 +7,7 @@ using GXPEngine;
 
     public class Assault_Rifle : Weapon
     {
-        public Assault_Rifle(): base(2, 2f, "Assets/rifle_inHand.png") 
+        public Assault_Rifle(): base(1, 2f, "Assets/rifle_inHand.png") 
         {
             SetOrigin(width / 2, height / 2);
         }
@@ -15,7 +15,7 @@ using GXPEngine;
         {
              if (parent != null) 
              {
-                Updater(parent.x, parent.y, new Bullet(rotation));
+                Updater(parent.x, parent.y);
                 
              }
         }
