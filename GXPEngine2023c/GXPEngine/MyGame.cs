@@ -9,7 +9,7 @@ public class MyGame : Game
     public string[] levels = new string[5]; //array for levels (if you add more levels, you will have to increase the number)
     private int currentLevel = 0; // levels always start from 0
     private Sound levelSwitchSound = new Sound("Assets/Level_entry_and_exit_sound.wav");
-    private Level level;
+    private Level Activelevel;
 
     public int GetCurrentLevel() //returns current level
     {
@@ -22,7 +22,7 @@ public class MyGame : Game
     }
 
 
-    public Level GetLevel() { return level; }
+    public Level GetLevel() { return Activelevel; }
 
 
     public MyGame() : base(1920, 1080, false)
@@ -70,9 +70,9 @@ public class MyGame : Game
             child.Destroy();
         }
 
-        level = new Level(name);
-        AddChild(level);
-
+        Activelevel = new Level(name);
+        AddChild(Activelevel);
+        
         if (currentLevel >= 1 && currentLevel != 4)
         {
             ui = new UI(width, height);

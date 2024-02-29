@@ -3,7 +3,7 @@ using System;
 using System.Drawing.Text;
 using TiledMapParser;
 
-internal class EnemySpawner : GameObject
+internal class EnemySpawner : Sprite
 {
 
     private int lives;
@@ -11,14 +11,18 @@ internal class EnemySpawner : GameObject
     private int spawninterval;
     private int spawnAmount;
     private float timer;
+    private Level level;
 
-
-    public EnemySpawner(TiledObject obj = null) : base()
+    public EnemySpawner(TiledObject obj = null) : base("Assets/EnemySpawner.png", false)
     {
+        
         lives = obj.GetIntProperty("lives");
         spawnCap = obj.GetIntProperty("spawnCap");
         spawninterval = obj.GetIntProperty("spawnInterval"); // time (in miliseconds) between each spawn cycle
-        spawnAmount = obj.GetIntProperty("spawnAmount"); 
+        spawnAmount = obj.GetIntProperty("spawnAmount");
+
+        MyGame myGame = (MyGame)game;
+        level = myGame.GetLevel();
     }
 
 
@@ -26,15 +30,13 @@ internal class EnemySpawner : GameObject
 
     private void spawnEnemy() 
     {
-        MyGame myGame = (MyGame)game;
-        Level level = myGame.GetLevel();
         Enemy enemy = new Enemy();
+        enemy.x = x; enemy.y = y;
         level.AddChild(enemy);
-    
-
+        Console.WriteLine(enemy.parent);
     }
 
-    void update() 
+    void Update() 
     {
         timer += Time.deltaTime;
         if (timer >= spawninterval) 
@@ -45,7 +47,7 @@ internal class EnemySpawner : GameObject
             {
                 spawnEnemy();
             }
-            
+            lives--;
 
 
         }
@@ -53,7 +55,6 @@ internal class EnemySpawner : GameObject
         if (lives <= 0) 
         { 
             Destroy();
-            Console.WriteLine("destroy spawner");
         }
     
 

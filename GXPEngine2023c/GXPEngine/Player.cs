@@ -52,7 +52,6 @@ public class Player : Character
         {
             health -= 10;
         }
-        Console.WriteLine(stepTimer);
         Animate(0.085f);
         invulernableWindowTimer += (Time.deltaTime / 1000f);
         GameObject[] cols = GetCollisions();
@@ -114,7 +113,7 @@ public class Player : Character
     public void ApplySound(Sound steppingSound)
     {
         currentSound = steppingSound;
-        Console.WriteLine(steppingSound);
+        
     }
 
     void Step()

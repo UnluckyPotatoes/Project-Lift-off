@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,11 +32,10 @@ public class Enemy : Character
 
     public Enemy() : base("Assets/Enemy.png", 1, 1)
     {
-
-
-
-
-
+        Console.WriteLine("made in" + parent);
+        health = 10f;
+        maxHealth = 10f;
+        scale = 10f;
         collider.isTrigger = true;
         EnemyHealthInfo enemyHealthInfo = new EnemyHealthInfo();
         AddChild(enemyHealthInfo);
@@ -157,13 +157,14 @@ public class Enemy : Character
     }
 
 
-    private void update()
+    private void Update()
     {
         BehaviourManager();
 
 
         if (IsDead(health))
         {
+            Console.WriteLine("destroy enemy");
             Destroy();
         }
     }
