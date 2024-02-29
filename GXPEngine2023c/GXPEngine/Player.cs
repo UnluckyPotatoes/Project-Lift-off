@@ -12,6 +12,7 @@ public class Player : Character
     private WeaponManager weaponManager;
     private Pistol pistol;
     private Assault_Rifle assaultRifle;
+    private Shotgun shotgun;
     private Weapon activeWeapon;
     private Sound currentSound;
     private float stepTimer;
@@ -19,6 +20,8 @@ public class Player : Character
 
     public Pistol Pistol { get { return pistol; } }
     public Assault_Rifle AssaultRifle { get { return assaultRifle; } }
+    public Shotgun Shotgun { get {  return shotgun; } }
+
     MyGame _myGame; // reference to mygame
 
 
@@ -39,6 +42,7 @@ public class Player : Character
         weaponManager = new WeaponManager();
         pistol = new Pistol();
         assaultRifle = new Assault_Rifle();
+        shotgun = new Shotgun();
         AddChild(pistol);
     }
 
@@ -99,6 +103,9 @@ public class Player : Character
                 break;
             case WeaponManager.Weapons.WMAssaultRifle:
                 activeWeapon = assaultRifle;
+                break;
+            case WeaponManager.Weapons.WMShotgun:
+                activeWeapon = shotgun;
                 break;
         }
 

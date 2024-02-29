@@ -11,12 +11,12 @@ public class Projectile : Sprite
     readonly float damage;
     readonly float speed;
 
-    public Projectile(string projectileName, int r, float d, float s) : base(projectileName)
+    public Projectile(string projectileName, int bRange, float bDamage, float bSpeed) : base(projectileName)
     {
         SetOrigin(width / 2, height / 2);
-        range = r;
-        damage = d;
-        speed = s;
+        range = bRange;
+        damage = bDamage;
+        speed = bSpeed;
     }
 
     public void Shot()

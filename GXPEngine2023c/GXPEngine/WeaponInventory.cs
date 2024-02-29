@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +22,6 @@ public class WeaponInventory : EasyDraw
         ShowWeapons();
     }
 
-
     private void FindWeapons()
     {
         player = game.FindObjectOfType<Player>();
@@ -30,13 +29,14 @@ public class WeaponInventory : EasyDraw
         {
             weapon1 = player.Pistol;
             weapon2 = player.AssaultRifle;
+            weapon3 = player.Shotgun;
         }
 
 
 
 
 
-
+        
     }
     private void ShowWeapons()
     {
@@ -48,7 +48,9 @@ public class WeaponInventory : EasyDraw
         AssaultRifle.SetOrigin(AssaultRifle.width / 2, AssaultRifle.height / 2);
         AddChild(AssaultRifle);
 
-
+        Sprite Shotgun = new Sprite("Assets/shotgun_inInventory.png", false, false) { y = 480, x = 160 };
+        Shotgun.SetOrigin(Shotgun.width / 2, Shotgun.height / 2);
+        AddChild(Shotgun);
     }
 
 
@@ -57,6 +59,7 @@ public class WeaponInventory : EasyDraw
         Text(" ", true);
         Text("x" + weapon1.Ammo, 240, 160);
         Text("x" + weapon2.Ammo, 240, 320);
+        Text("x" + weapon3.Ammo, 240, 480);
     }
 
     void Update()
