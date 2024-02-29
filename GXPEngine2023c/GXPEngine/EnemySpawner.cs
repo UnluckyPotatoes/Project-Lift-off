@@ -32,7 +32,7 @@ internal class EnemySpawner : Sprite
     {
         Enemy enemy = new Enemy();
         enemy.x = x; enemy.y = y;
-        level.AddChild(enemy);
+        parent.AddChild(enemy);
         Console.WriteLine(enemy.parent);
     }
 
