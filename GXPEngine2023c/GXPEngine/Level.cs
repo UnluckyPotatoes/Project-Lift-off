@@ -25,13 +25,15 @@ public class Level : GameObject
         loader.rootObject = this;
         loader.addColliders = true;
         loader.LoadTileLayers(1); // Walls, Building, asset, etc.
-        
 
         loader.addColliders = false;
+        loader.LoadTileLayers(2); // decor
+
         loader.autoInstance = true;
         loader.LoadObjectGroups(); // Objects, Characters
 
-        loader.LoadTileLayers(2); // foreground
+        loader.LoadTileLayers(3); // foreGround
+        
     }
 
 }
