@@ -17,7 +17,6 @@ public class Shotgun : Weapon
         {
             for (int i = 0; i < pellets; i++)
             {
-                Console.WriteLine("Shotgun");
                 Updater(parent.x, parent.y);
             }
 

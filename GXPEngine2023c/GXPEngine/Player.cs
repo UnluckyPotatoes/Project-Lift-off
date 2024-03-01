@@ -5,8 +5,8 @@ using TiledMapParser;
 public class Player : Character
 {
     public GameObject[] invSlot = new GameObject[3];
-    readonly float speed = 2;
-    readonly float invulernableWindow = 0.5f;
+    private float speed = 2;
+    private float invulernableWindow = 0.5f;
     private float invulernableWindowTimer;
     private int playerIndex;
     private WeaponManager weaponManager;
@@ -17,19 +17,22 @@ public class Player : Character
     private Sound currentSound;
     private float stepTimer;
     private float stepTimerInterval = 0.5f;
-    private int pistolAmmoGained = 4;
-    private int assaultRifleAmmoGained = 6;
-    private int shotgunAmmoGained = 2;
 
+    private float pistolAmmoGained = 4;
+    private float assaultRifleAmmoGained = 6;
+    private float shotgunAmmoGained = 2;
 
-
-
+    public float Speed { get { return speed; } }
+    public float InvulernableWindow { get { return invulernableWindow; } }
     public Pistol Pistol { get { return pistol; } }
     public Assault_Rifle AssaultRifle { get { return assaultRifle; } }
     public Shotgun Shotgun { get {  return shotgun; } }
 
-    MyGame _myGame; // reference to mygame
+    public float PistolAmmoGained { get { return pistolAmmoGained; } }
+    public float AssaultAmmoGained { get { return assaultRifleAmmoGained; } } 
+    public float ShotgunAmmoGained { get { return shotgunAmmoGained; } }
 
+    MyGame _myGame; // reference to mygame
 
     public int PlayerIndex   // property
     {
@@ -67,8 +70,10 @@ public class Player : Character
 
             if (c is Enemy && invulernableWindowTimer >= invulernableWindow)
             {
+                
                 Enemy enemy = (Enemy)c;
                 health -= enemy.GetDamage();
+                
                 invulernableWindowTimer = 0;
             }
 
@@ -92,6 +97,17 @@ public class Player : Character
                 am.Destroy();
             }
 
+
+
+            if (c is Buffs) 
+            {
+                
+                Buffs buffs = (Buffs)c;
+                AddBuff(buffs.buffType);
+                buffs.Destroy();
+            
+            }
+
         }
         MovePlayer();
 
@@ -108,7 +124,71 @@ public class Player : Character
         }
     }
 
+    private void AddBuff(string type) 
+    {
+        Console.WriteLine("Buff pickUp");
+        switch (type)
+        {
+            //character buffs
+            case "speed":
+                speed *= 1.1f;
+                Console.Write("speed");
+                break;
+            case "invulernableWindow":
+                invulernableWindow *= 1.1f;
+                Console.Write("invulernableWindow");
+                break;
+            case "health":
+                health = maxHealth;
+                Console.Write("health");
+                break;
 
+            //weapon buffs
+
+                //weapon damage buff
+            case "pistolDamage":
+                pistol.WeaponDamage *= 1.1f;
+                Console.WriteLine("pistolDamage");
+                break;
+            case "assaultDamage":
+                assaultRifle.WeaponDamage *= 1.1f;
+                Console.WriteLine("pistolDamage");
+                break;
+            case "shotgunDamage":
+                shotgun.WeaponDamage *= 1.1f;
+                Console.WriteLine("pistolDamage");
+                break;
+
+                //weapon firerate buff
+            case "pistolFireRate":
+                pistol.WeaponFireRate *= 1.1f;
+                break;
+            case "assaultFireRate":
+                assaultRifle.WeaponFireRate *= 1.1f;
+                break;
+            case "shotgunFireRate":
+                shotgun.WeaponFireRate *= 1.1f;
+                break;
+
+                //weapon ammo buffs
+            case "pistolAmmoGained":
+                pistolAmmoGained += 1;
+                break;
+            case "assaultAmmoGained":
+                assaultRifleAmmoGained += 1;
+                break;
+            case "shotgunAmmoGained":
+                shotgunAmmoGained += 1;
+                break;
+
+
+
+
+        }
+    
+    
+    
+    }
     private void ChangeWeapon()
     {
 

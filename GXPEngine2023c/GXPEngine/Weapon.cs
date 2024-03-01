@@ -17,7 +17,7 @@ public class Weapon : Sprite
     private float r; // rotation
     private float px; // playerX
     private float py; // playerY
-    private int range;
+    private float range;
     private float speed;
     private float damage;
     private float fireRate;
@@ -49,7 +49,7 @@ public class Weapon : Sprite
         set { fireRate = value; }
     }
 
-    public int Range 
+    public float WeaponRange 
     {
         get { return range; }
         set { range = value; }

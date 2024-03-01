@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AmmoCase.cs" />
     <Compile Include="Assault Rifle.cs" />
+    <Compile Include="Buffs.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="EnemySpawner.cs" />

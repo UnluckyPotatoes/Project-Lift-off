@@ -9,6 +9,7 @@ using GXPEngine;
     {
         public Pickup(string img) : base(img)
         {
+            SetOrigin(width/2 , height/2);
             collider.isTrigger = true;
         }
     }

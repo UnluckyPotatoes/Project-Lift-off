@@ -18,6 +18,7 @@ public class MyGame : Game
     public void SetCurrentLevel(int _value) //sets new level and deletes old level
     {
         currentLevel = _value;
+        if (currentLevel >= 5) { currentLevel = 4; }
         LoadLevel(levels[currentLevel]);
     }
 
@@ -106,8 +107,9 @@ public class MyGame : Game
     {
         GameObject[] enemyCount = FindObjectsOfType<Enemy>();
         GameObject[] enemySpawnerCount = FindObjectsOfType<EnemySpawner>();
-        if (enemyCount.Length <= 0 && enemySpawnerCount.Length <= 0 && currentLevel !=0) 
+        if (enemyCount.Length <= 0 && enemySpawnerCount.Length <= 0 && (currentLevel != 0)) 
         { 
+
             NextLevel();
             
         }
@@ -118,6 +120,7 @@ public class MyGame : Game
 
     private void NextLevel() 
     {
+        Console.WriteLine("next level");
         SetCurrentLevel(currentLevel += 1);
         
     }
