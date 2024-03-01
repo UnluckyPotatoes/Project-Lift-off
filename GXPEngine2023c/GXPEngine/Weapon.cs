@@ -71,7 +71,6 @@ public class Weapon : Sprite
     public void Updater(float px, float py)
     {
         Inhand(px, py);
-        
 
         if (this is Pistol && Input.GetMouseButtonDown(0)) { Action(1); weaponSounds = WeaponSounds.Pistol; }
         if (this is Assault_Rifle && Input.GetMouseButton(0)) { Action(1); weaponSounds = WeaponSounds.AssaultRifle; }

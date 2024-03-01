@@ -57,6 +57,7 @@ public class Player : Character
 
     void Update()
     {
+        
         if (Input.GetKeyDown(Key.P)) // to insta kill player for testing 
         {
             health -= 10;
@@ -238,12 +239,12 @@ public class Player : Character
     {
         float px = 0;
         float py = 0;
-
-        if (Input.GetKey(Key.W)) { py = -speed; SetCycle(11, 5); }
-        if (Input.GetKey(Key.A)) { px = -speed; SetCycle(0, 3); }
-        if (Input.GetKey(Key.S)) { py = speed;  SetCycle(0, 3); }
-        if (Input.GetKey(Key.D)) { px = speed;  SetCycle(5, 3); }
-
+        Boolean walking = false;
+        if (Input.GetKey(Key.W)) { py = -speed; SetCycle(11, 5); walking = true; }
+        if (Input.GetKey(Key.A)) { px = -speed; SetCycle(0, 3); walking = true; }
+        if (Input.GetKey(Key.S)) { py = speed;  SetCycle(0, 3); walking = true; }
+        if (Input.GetKey(Key.D)) { px = speed;  SetCycle(5, 3); walking = true; }
+        if (walking != true) { SetCycle(2,1); }
         MoveUntilCollision(px, 0);
         MoveUntilCollision(0, py);
         if (px != 0 || py != 0)

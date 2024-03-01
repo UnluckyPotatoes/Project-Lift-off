@@ -1,6 +1,4 @@
-﻿using System;
-
-public class Shotgun : Weapon
+﻿public class Shotgun : Weapon
 {
     private int pellets = 5;
     private float spread;
@@ -19,9 +17,6 @@ public class Shotgun : Weapon
             {
                 Updater(parent.x, parent.y);
             }
-
-
-
 
         }
     }

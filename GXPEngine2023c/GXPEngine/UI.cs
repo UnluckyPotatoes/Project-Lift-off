@@ -53,7 +53,7 @@ public class UI : Canvas
         score.TextFont(upheaval);
         score.TextAlign(CenterMode.Min, CenterMode.Center);
         score.Fill(255);
-        score.SetXY(1610, 15);
+        score.SetXY(0, 20);
         AddChild(score);
     }
 
@@ -82,7 +82,7 @@ public class UI : Canvas
         speed.TextFont(upheaval);
         speed.TextAlign(CenterMode.Min, CenterMode.Center);
         speed.Fill(255);
-        speed.SetXY(1610, 95);
+        speed.SetXY(0, 70);
         AddChild(speed);
 
         //pistolDamage
