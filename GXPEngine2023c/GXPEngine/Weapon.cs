@@ -68,7 +68,6 @@ public class Weapon : Sprite
     
     public void Updater(float px, float py)
     {
-        /*pistolShot = new Sound("Assets/Gunshot1Pistol.wav");*/
         Inhand(px, py);
 
 
