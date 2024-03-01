@@ -7,11 +7,11 @@ public class Projectile : Sprite
     public float beginY;
 
 
-    readonly int range;
+    readonly float range;
     readonly float damage;
     readonly float speed;
 
-    public Projectile(string projectileName, int bRange, float bDamage, float bSpeed) : base(projectileName)
+    public Projectile(string projectileName, float bRange, float bDamage, float bSpeed) : base(projectileName)
     {
         scale = 0.5f;
         SetOrigin(width / 2, height / 2);
