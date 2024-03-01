@@ -9,7 +9,7 @@ internal class Bullet : Projectile
 {
     
 
-    public Bullet(float r, int bRange, float bDamage, float bSpeed) : base("Assets/triangle.png", bRange, bDamage, bSpeed)
+    public Bullet(float r, float bRange, float bDamage, float bSpeed) : base("Assets/triangle.png", bRange, bDamage, bSpeed)
     {
         rotation = r;
     }

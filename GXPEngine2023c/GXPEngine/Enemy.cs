@@ -190,6 +190,11 @@ public class Enemy : Character
                 ammoCaseImg = "Assets/shotgun_AmmoCase.png";
                 break;
         }
+
+        ammoCase = new AmmoCase(ammoCaseImg, ammoType);
+        ammoCase.x = x; ammoCase.y = y;
+        parent.AddChild(ammoCase);
+
     }
 
     private void GenerateBuffDrop() 
@@ -203,61 +208,51 @@ public class Enemy : Character
                 buffTypeString = "speed";
                 break;
             case 1:
-                buffTypeString = "health";
+                buffTypeString = "invulernableWindow";
                 break;
             case 2:
-                buffTypeString = "speed";
+                buffTypeString = "health";
                 break;
 
                 // weapon dmg buffs
             case 3:
-                buffTypeString = "speed";
+                buffTypeString = "pistolDamage";
                 break;
             case 4:
-                buffTypeString = "health";
+                buffTypeString = "assaultDamage";
                 break;
             case 5:
-                buffTypeString = "speed";
+                buffTypeString = "shotgunDamage";
                 break;
 
                 //weapon fireRate buffs
             case 6:
-                buffTypeString = "speed";
+                buffTypeString = "pistolFireRate";
                 break;
             case 7:
-                buffTypeString = "health";
+                buffTypeString = "assaultFireRate";
                 break;
             case 8:
-                buffTypeString = "speed";
+                buffTypeString = "shotgunFireRate";
                 break;
 
                 //weapon range buffs
             case 9:
-                buffTypeString = "speed";
+                buffTypeString = "pistolAmmoGained";
                 break;
             case 10:
-                buffTypeString = "health";
+                buffTypeString = "assaultAmmoGained";
                 break;
             case 11:
-                buffTypeString = "speed";
+                buffTypeString = "shotgunAmmoGained";
                 break;
-
-
-
-
-
-
-
-
 
         }
 
 
-
-
-
-
-
+        BuffType = new Buffs("Assets/Buff.png", buffTypeString);
+        BuffType.x = x; BuffType.y = y;
+        parent.AddChild(BuffType);
 
     }
 
@@ -268,16 +263,10 @@ public class Enemy : Character
 
         if (IsDead(health))
         {
-            GenerateAmmoType();
-            ammoCase = new AmmoCase(ammoCaseImg, ammoType);
-            ammoCase.x = x; ammoCase.y = y;
-            parent.AddChild(ammoCase);
-
             GenerateBuffDrop();
-            BuffType = new Buffs("Assets/Buff.png", buffTypeString);
-            BuffType.x = x; BuffType.y = y;
-            parent.AddChild(BuffType);
 
+            GenerateAmmoType();
+            
             ui._Score += scoreGained;
             Destroy();
         }
