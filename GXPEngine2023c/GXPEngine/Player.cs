@@ -5,7 +5,7 @@ using TiledMapParser;
 public class Player : Character
 {
     public GameObject[] invSlot = new GameObject[3];
-    private float speed = 2;
+    private float speed = 1;
     private float invulernableWindow = 0.5f;
     private float invulernableWindowTimer;
     private int playerIndex;
@@ -67,8 +67,10 @@ public class Player : Character
 
             if (c is Enemy && invulernableWindowTimer >= invulernableWindow)
             {
+                Console.WriteLine("enemy dmg player");
                 Enemy enemy = (Enemy)c;
                 health -= enemy.GetDamage();
+                Console.WriteLine(health);
                 invulernableWindowTimer = 0;
             }
 
@@ -96,7 +98,7 @@ public class Player : Character
 
             if (c is Buffs) 
             {
-
+                Console.WriteLine("buffCollison");
                 Buffs buffs = (Buffs)c;
                 AddBuff(buffs.buffType);
                 buffs.Destroy();
@@ -123,9 +125,20 @@ public class Player : Character
     {
         switch (type)
         {
+            //character buffs
             case "speed":
                 speed *= 1.1f;
                 break;
+            case "invulernableWindow":
+                invulernableWindow *= 1.1f;
+                break;
+            case "health":
+                health = maxHealth; 
+                break;
+
+            //weapon buffs
+
+                //weapon damage buff
             case "pistolDamage":
                 pistol.WeaponDamage *= 1.1f;
                 break;
@@ -135,6 +148,8 @@ public class Player : Character
             case "shotgunDamage":
                 shotgun.WeaponDamage *= 1.1f;
                 break;
+
+                //weapon firerate buff
             case "pistolFireRate":
                 pistol.WeaponFireRate *= 1.1f;
                 break;
@@ -144,6 +159,8 @@ public class Player : Character
             case "shotgunFireRate":
                 shotgun.WeaponFireRate *= 1.1f;
                 break;
+
+                //weapon ammo buffs
             case "pistolAmmoGained":
                 pistolAmmoGained += 1;
                 break;

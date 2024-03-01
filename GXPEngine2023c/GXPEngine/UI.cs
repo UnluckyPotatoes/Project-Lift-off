@@ -12,7 +12,7 @@ public class UI : Canvas
     Font upheaval;
     private int _score;
     public int _Score { get { return _score; }
-                  set { _score += value; }
+                  set { _score = value; }
     }
 
     public UI(int width, int height) : base(width, height, false)

@@ -49,7 +49,7 @@ public class Weapon : Sprite
         set { fireRate = value; }
     }
 
-    public int Range 
+    public int WeaponRange 
     {
         get { return range; }
         set { range = value; }

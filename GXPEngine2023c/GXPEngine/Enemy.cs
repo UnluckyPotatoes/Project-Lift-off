@@ -28,6 +28,11 @@ public class Enemy : Character
     private float cooldownX;
     private float cooldownY;
     private float movementAdjustment;
+    private int scoreGained = 1;
+
+    private int buffType;
+    private string buffTypeString;
+    Buffs BuffType;
     private int ammoType;
     AmmoCase ammoCase;
     private string ammoCaseImg;
@@ -41,9 +46,9 @@ public class Enemy : Character
 
     public Enemy() : base("Assets/Enemy.png", 1, 1)
     {
-        
         health = 5f;
         maxHealth = 5f;
+        damage = 1;
         collider.isTrigger = true;
         EnemyHealthInfo enemyHealthInfo = new EnemyHealthInfo();
 
@@ -169,10 +174,91 @@ public class Enemy : Character
 
 
 
-    private void generateAmmoType() 
+    private void GenerateAmmoType() 
     { 
         Random random = new Random();
         ammoType = random.Next(0,3);
+        switch (ammoType)
+        {
+            case 0:
+                ammoCaseImg = "Assets/pistol_AmmoCase.png";
+                break;
+            case 1:
+                ammoCaseImg = "Assets/rifle_AmmoCase.png";
+                break;
+            case 2:
+                ammoCaseImg = "Assets/shotgun_AmmoCase.png";
+                break;
+        }
+    }
+
+    private void GenerateBuffDrop() 
+    {
+        Random random = new Random();
+        buffType = random.Next(0, 100);
+        switch (buffType) 
+        {
+            //player buffs
+            case 0:
+                buffTypeString = "speed";
+                break;
+            case 1:
+                buffTypeString = "health";
+                break;
+            case 2:
+                buffTypeString = "speed";
+                break;
+
+                // weapon dmg buffs
+            case 3:
+                buffTypeString = "speed";
+                break;
+            case 4:
+                buffTypeString = "health";
+                break;
+            case 5:
+                buffTypeString = "speed";
+                break;
+
+                //weapon fireRate buffs
+            case 6:
+                buffTypeString = "speed";
+                break;
+            case 7:
+                buffTypeString = "health";
+                break;
+            case 8:
+                buffTypeString = "speed";
+                break;
+
+                //weapon range buffs
+            case 9:
+                buffTypeString = "speed";
+                break;
+            case 10:
+                buffTypeString = "health";
+                break;
+            case 11:
+                buffTypeString = "speed";
+                break;
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
     }
 
     private void Update()
@@ -182,27 +268,17 @@ public class Enemy : Character
 
         if (IsDead(health))
         {
-            generateAmmoType();
-            switch (ammoType) 
-            {
-                case 0:
-                    ammoCaseImg = "Assets/pistol_AmmoCase.png";
-                break;
-                case 1:
-                    ammoCaseImg = "Assets/rifle_AmmoCase.png";
-                    break;
-                case 2:
-                    ammoCaseImg = "Assets/shotgun_AmmoCase.png";
-                    break;
-            
-            
-            }
+            GenerateAmmoType();
             ammoCase = new AmmoCase(ammoCaseImg, ammoType);
             ammoCase.x = x; ammoCase.y = y;
             parent.AddChild(ammoCase);
-            Console.WriteLine("destroy enemy");
-            ui._Score = 1;
-            //ui.SetScore(ui._Score ++);
+
+            GenerateBuffDrop();
+            BuffType = new Buffs("Assets/Buff.png", buffTypeString);
+            BuffType.x = x; BuffType.y = y;
+            parent.AddChild(BuffType);
+
+            ui._Score += scoreGained;
             Destroy();
         }
     }

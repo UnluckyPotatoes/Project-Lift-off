@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GXPEngine;
 
-namespace GXPEngine
+
+internal class Buffs : Sprite
 {
-    internal class Buffs
+    public string buffType;
+
+    public Buffs(string img, string type) : base(img, false, true)
     {
+        collider.isTrigger = true;
+        buffType = type;
     }
+
+
+    
+
+
+
+
+
 }
+
