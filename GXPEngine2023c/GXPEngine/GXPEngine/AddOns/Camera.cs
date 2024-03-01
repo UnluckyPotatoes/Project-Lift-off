@@ -2,7 +2,8 @@ using GXPEngine.Core; // For Vector2
 
 namespace GXPEngine {
 	/// <summary>
-	/// A Camera gameobject, that owns a rectangular render window, and determines the focal point, rotation and scale
+	/// A Camera gameobject, that owns a rectangular render window, and determines the focal point, rotation and 
+	/// 
 	/// of what's rendered in that window.
 	/// (Don't forget to add this as child somewhere in the hierarchy.)
 	/// </summary>

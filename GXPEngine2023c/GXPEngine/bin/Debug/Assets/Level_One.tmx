@@ -295,7 +295,7 @@
 </data>
  </layer>
  <objectgroup id="3" name="Characters">
-  <object id="1" name="Player1" type="Player" x="928" y="528" width="64" height="64">
+  <object id="1" name="Player1" type="Player" x="912" y="512" width="51" height="72">
    <properties>
     <property name="Health" type="float" value="10"/>
     <property name="ammo" type="float" value="100"/>

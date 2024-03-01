@@ -249,10 +249,12 @@ public class Enemy : Character
 
         }
 
-
-        BuffType = new Buffs("Assets/Buff.png", buffTypeString);
-        BuffType.x = x; BuffType.y = y;
-        parent.AddChild(BuffType);
+        if (buffTypeString != null) 
+        {
+            BuffType = new Buffs("Assets/Buff.png", buffTypeString);
+            BuffType.x = x; BuffType.y = y;
+            parent.AddChild(BuffType);
+        }
 
     }
 

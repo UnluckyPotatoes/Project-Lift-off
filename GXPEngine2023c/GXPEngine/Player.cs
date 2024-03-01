@@ -40,7 +40,7 @@ public class Player : Character
     }
 
 
-    public Player(TiledObject obj = null) : base("Assets/charcater_f3_copy.png", 1, 1)
+    public Player(TiledObject obj = null) : base("Assets/improved_spritesheet_character.png", 5, 3)
     {
         health = obj.GetFloatProperty("Health");
         maxHealth = obj.GetFloatProperty("maxHealth");
@@ -126,7 +126,7 @@ public class Player : Character
 
     private void AddBuff(string type) 
     {
-        Console.WriteLine("Buff pickUp");
+        Console.WriteLine("Buff pickUp" + type);
         switch (type)
         {
             //character buffs
@@ -152,33 +152,39 @@ public class Player : Character
                 break;
             case "assaultDamage":
                 assaultRifle.WeaponDamage *= 1.1f;
-                Console.WriteLine("pistolDamage");
+                Console.WriteLine("assaultDamage");
                 break;
             case "shotgunDamage":
                 shotgun.WeaponDamage *= 1.1f;
-                Console.WriteLine("pistolDamage");
+                Console.WriteLine("shotgunDamage");
                 break;
 
                 //weapon firerate buff
             case "pistolFireRate":
                 pistol.WeaponFireRate *= 1.1f;
+                Console.WriteLine("pistolFireRate");
                 break;
             case "assaultFireRate":
                 assaultRifle.WeaponFireRate *= 1.1f;
+                Console.WriteLine("assaultFireRate");
                 break;
             case "shotgunFireRate":
                 shotgun.WeaponFireRate *= 1.1f;
+                Console.WriteLine("shotgunFireRate");
                 break;
 
                 //weapon ammo buffs
             case "pistolAmmoGained":
                 pistolAmmoGained += 1;
+                Console.WriteLine("pistoAmmoGained");
                 break;
             case "assaultAmmoGained":
                 assaultRifleAmmoGained += 1;
+                Console.WriteLine("assaultAmmoGained");
                 break;
             case "shotgunAmmoGained":
                 shotgunAmmoGained += 1;
+                Console.WriteLine("shotgunAmmoGained");
                 break;
 
 
@@ -233,10 +239,10 @@ public class Player : Character
         float px = 0;
         float py = 0;
 
-        if (Input.GetKey(Key.W)) { py = -speed; }
-        if (Input.GetKey(Key.A)) { px = -speed; }
-        if (Input.GetKey(Key.S)) { py = speed; }
-        if (Input.GetKey(Key.D)) { px = speed; }
+        if (Input.GetKey(Key.W)) { py = -speed; SetCycle(11, 5); }
+        if (Input.GetKey(Key.A)) { px = -speed; SetCycle(0, 3); }
+        if (Input.GetKey(Key.S)) { py = speed;  SetCycle(0, 3); }
+        if (Input.GetKey(Key.D)) { px = speed;  SetCycle(5, 3); }
 
         MoveUntilCollision(px, 0);
         MoveUntilCollision(0, py);
@@ -250,7 +256,6 @@ public class Player : Character
             if (stepTimer >= stepTimerInterval)
             {
                 stepTimer = 0;
-                
             }
         }
         else

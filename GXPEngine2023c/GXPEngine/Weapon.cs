@@ -27,7 +27,7 @@ public class Weapon : Sprite
     private Sound pistolShot = new Sound("Assets/Gunshot1Pistol.wav");
     private Sound shotgunShot = new Sound("Assets/Gunshot2Shotgun.wav");
     private Sound assaultRifleShot = new Sound("Assets/Gunshot3machine.wav");
-    private Sound[] gunsounds;
+    
 
 
 
@@ -57,7 +57,9 @@ public class Weapon : Sprite
  
     public Weapon(int wRange, float wSpeed, float wDamage, float wFireRate, string weaponName) : base(weaponName, false, false)
     {
+        
         SetOrigin(width / 2, height / 2);
+        
         range = wRange;
         speed = wSpeed;
         damage = wDamage;
@@ -69,7 +71,7 @@ public class Weapon : Sprite
     public void Updater(float px, float py)
     {
         Inhand(px, py);
-
+        
 
         if (this is Pistol && Input.GetMouseButtonDown(0)) { Action(1); weaponSounds = WeaponSounds.Pistol; }
         if (this is Assault_Rifle && Input.GetMouseButton(0)) { Action(1); weaponSounds = WeaponSounds.AssaultRifle; }
@@ -82,6 +84,7 @@ public class Weapon : Sprite
 
     void Inhand(float px, float py)
     {
+        scale = 5f;
         //Location of gun in respect to parent point towards the mouse
         int mouseX = Input.mouseX; int mouseY = Input.mouseY;
         float mouseFX = mouseX; float mouseFY = mouseY;
@@ -94,7 +97,7 @@ public class Weapon : Sprite
         rotation = Mathf.Atan2(xDis, yDis) * 180f / Mathf.PI;
         r = (rotation - 90)
             * Mathf.PI / 180f;
-        SetXY(256 * Mathf.Cos(r), 256 * Mathf.Sin(r));
+        SetXY(512 * Mathf.Cos(r), 512 * Mathf.Sin(r));
     }
 
     void Action(int pellets)
