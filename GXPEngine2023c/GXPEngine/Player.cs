@@ -5,8 +5,8 @@ using TiledMapParser;
 public class Player : Character
 {
     public GameObject[] invSlot = new GameObject[3];
-    readonly float speed = 2;
-    readonly float invulernableWindow = 0.5f;
+    private float speed = 2;
+    private float invulernableWindow = 0.5f;
     private float invulernableWindowTimer;
     private int playerIndex;
     private WeaponManager weaponManager;
@@ -92,6 +92,17 @@ public class Player : Character
                 am.Destroy();
             }
 
+
+
+            if (c is Buffs) 
+            {
+
+                Buffs buffs = (Buffs)c;
+                AddBuff(buffs.buffType);
+                buffs.Destroy();
+            
+            }
+
         }
         MovePlayer();
 
@@ -108,7 +119,49 @@ public class Player : Character
         }
     }
 
+    private void AddBuff(string type) 
+    {
+        switch (type)
+        {
+            case "speed":
+                speed *= 1.1f;
+                break;
+            case "pistolDamage":
+                pistol.WeaponDamage *= 1.1f;
+                break;
+            case "assaultDamage":
+                assaultRifle.WeaponDamage *= 1.1f;
+                break;
+            case "shotgunDamage":
+                shotgun.WeaponDamage *= 1.1f;
+                break;
+            case "pistolFireRate":
+                pistol.WeaponFireRate *= 1.1f;
+                break;
+            case "assaultFireRate":
+                assaultRifle.WeaponFireRate *= 1.1f;
+                break;
+            case "shotgunFireRate":
+                shotgun.WeaponFireRate *= 1.1f;
+                break;
+            case "pistolAmmoGained":
+                pistolAmmoGained += 1;
+                break;
+            case "assaultAmmoGained":
+                assaultRifleAmmoGained += 1;
+                break;
+            case "shotgunAmmoGained":
+                shotgunAmmoGained += 1;
+                break;
 
+
+
+
+        }
+    
+    
+    
+    }
     private void ChangeWeapon()
     {
 

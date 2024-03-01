@@ -9,7 +9,6 @@ using TiledMapParser;
 public class WeaponInventory : EasyDraw
 {
     private Player player;
-    private Weapon[] weapons;
     private Weapon weapon1;
     private Weapon weapon2;
     private Weapon weapon3;
