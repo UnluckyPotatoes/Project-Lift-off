@@ -7,7 +7,7 @@ using GXPEngine;
 
     public class Assault_Rifle : Weapon
     {
-        public Assault_Rifle(): base(1, 2f, "Assets/rifle_inHand.png") 
+        public Assault_Rifle(): base(35, 7f, 1f, 2f, "Assets/rifle_inHand.png") 
         {
             SetOrigin(width / 2, height / 2);
         }

@@ -38,12 +38,14 @@ public class MyGame : Game
 
     void Update()
     {
+        EnemyChecker();
 
         if (Input.GetKey(Key.LEFT_SHIFT))
         {
             Console.WriteLine(currentFps);
             Console.WriteLine(GetDiagnostics());
         }
+
         if (Input.GetKeyUp(Key.ENTER)) // instead of changing the level in menu class it changes in here (menu class will be used for the button)
         {
             if (currentLevel == 0)
@@ -97,7 +99,30 @@ public class MyGame : Game
 
         if (steppingSound != null) { FindObjectOfType<Player>().ApplySound(steppingSound); }
 
+        
     }
+
+    private void EnemyChecker() 
+    {
+        GameObject[] enemyCount = FindObjectsOfType<Enemy>();
+        GameObject[] enemySpawnerCount = FindObjectsOfType<EnemySpawner>();
+        if (enemyCount.Length <= 0 && enemySpawnerCount.Length <= 0 && currentLevel !=0) 
+        { 
+            NextLevel();
+            
+        }
+
+    }
+
+
+
+    private void NextLevel() 
+    {
+        SetCurrentLevel(currentLevel += 1);
+        
+    }
+
+
 
     static void Main()                          // Main() is the first method that's called when the program is run
     {

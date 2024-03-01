@@ -1,5 +1,5 @@
-﻿using System;
-using GXPEngine;
+﻿using GXPEngine;
+using System;
 
 public class Projectile : Sprite
 {
@@ -13,6 +13,7 @@ public class Projectile : Sprite
 
     public Projectile(string projectileName, int bRange, float bDamage, float bSpeed) : base(projectileName)
     {
+        scale = 0.5f;
         SetOrigin(width / 2, height / 2);
         range = bRange;
         damage = bDamage;
@@ -24,11 +25,11 @@ public class Projectile : Sprite
         Moving();
     }
 
-    void Moving()
+    private void Moving()
     {
         //Movement of projectile
         Move(0, -speed);
-        if (RangeCheck()) 
+        if (RangeCheck())
         {
             End();
         }
@@ -43,11 +44,11 @@ public class Projectile : Sprite
                 enemy.health -= damage;
                 End();
             }
-            
+
         }
     }
 
-    Boolean RangeCheck()
+    private Boolean RangeCheck()
     {
         if (x > beginX + 16 * range || x < beginX - 16 * range ||
             y > beginY + 16 * range || y < beginY - 16 * range)
@@ -57,11 +58,11 @@ public class Projectile : Sprite
         return false;
     }
 
-   
 
-    void End()
+
+    private void End()
     {
         Destroy();
     }
 }
-    
+

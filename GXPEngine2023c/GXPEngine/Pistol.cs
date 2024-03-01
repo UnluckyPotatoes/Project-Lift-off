@@ -8,7 +8,7 @@ using GXPEngine;
     public class Pistol : Weapon
     {
     
-        public Pistol() : base(1, 0.75f, "Assets/pistol_inHand.png") 
+        public Pistol() : base(20, 7f, 2f, 0.75f, "Assets/pistol_inHand.png") 
         {
             SetOrigin(width / 2, height / 2);
         }

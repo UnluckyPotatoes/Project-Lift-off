@@ -32,14 +32,18 @@ public class Enemy : Character
     AmmoCase ammoCase;
     private string ammoCaseImg;
     UI ui;
+
+
+
+
     public float GetDamage() { return damage; }
 
 
     public Enemy() : base("Assets/Enemy.png", 1, 1)
     {
-        Console.WriteLine("made in" + parent);
-        health = 1f;
-        maxHealth = 1f;
+        
+        health = 5f;
+        maxHealth = 5f;
         collider.isTrigger = true;
         EnemyHealthInfo enemyHealthInfo = new EnemyHealthInfo();
 
