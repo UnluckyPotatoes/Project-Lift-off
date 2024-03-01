@@ -6,7 +6,7 @@ public class Shotgun : Weapon
     private float spread;
 
     public int Pellets { get { return pellets; } }
-    public Shotgun() : base(1, 0.5f, "Assets/shotgun_inHand.png")
+    public Shotgun() : base(10, 7, 1f, 0.5f, "Assets/shotgun_inHand.png")
     {
         SetOrigin(width / 2, height / 2);
     }
@@ -15,12 +15,12 @@ public class Shotgun : Weapon
     {
         if (parent != null)
         {
-            for (int i = 0; i < pellets; i++) 
+            for (int i = 0; i < pellets; i++)
             {
                 Console.WriteLine("Shotgun");
                 Updater(parent.x, parent.y);
             }
-            
+
 
 
 
