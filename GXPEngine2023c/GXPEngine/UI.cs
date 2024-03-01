@@ -30,7 +30,7 @@ public class UI : Canvas
         score.TextAlign(CenterMode.Min, CenterMode.Center);
         score.Fill(255);
         score.Text("Score: " + _score);
-        score.SetXY(1625, 15);
+        score.SetXY(1610, 15);
         AddChild(score);
 
     }
