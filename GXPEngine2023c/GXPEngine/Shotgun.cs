@@ -15,12 +15,12 @@ public class Shotgun : Weapon
     {
         if (parent != null)
         {
-            for (int i = 0; i < pellets; i++) 
+            for (int i = 0; i < pellets; i++)
             {
                 Console.WriteLine("Shotgun");
                 Updater(parent.x, parent.y);
             }
-            
+
 
 
 

@@ -1,5 +1,5 @@
-﻿using System;
-using GXPEngine;
+﻿using GXPEngine;
+using System;
 
 public class Projectile : Sprite
 {
@@ -29,7 +29,7 @@ public class Projectile : Sprite
     {
         //Movement of projectile
         Move(0, -speed);
-        if (RangeCheck()) 
+        if (RangeCheck())
         {
             End();
         }
@@ -44,7 +44,7 @@ public class Projectile : Sprite
                 enemy.health -= damage;
                 End();
             }
-            
+
         }
     }
 
@@ -58,11 +58,11 @@ public class Projectile : Sprite
         return false;
     }
 
-   
+
 
     private void End()
     {
         Destroy();
     }
 }
-    
+
