@@ -190,6 +190,11 @@ public class Enemy : Character
                 ammoCaseImg = "Assets/shotgun_AmmoCase.png";
                 break;
         }
+
+        ammoCase = new AmmoCase(ammoCaseImg, ammoType);
+        ammoCase.x = x; ammoCase.y = y;
+        parent.AddChild(ammoCase);
+
     }
 
     private void GenerateBuffDrop() 
@@ -242,22 +247,12 @@ public class Enemy : Character
                 buffTypeString = "speed";
                 break;
 
-
-
-
-
-
-
-
-
         }
 
 
-
-
-
-
-
+        BuffType = new Buffs("Assets/Buff.png", buffTypeString);
+        BuffType.x = x; BuffType.y = y;
+        parent.AddChild(BuffType);
 
     }
 
@@ -268,16 +263,10 @@ public class Enemy : Character
 
         if (IsDead(health))
         {
-            GenerateAmmoType();
-            ammoCase = new AmmoCase(ammoCaseImg, ammoType);
-            ammoCase.x = x; ammoCase.y = y;
-            parent.AddChild(ammoCase);
-
             GenerateBuffDrop();
-            BuffType = new Buffs("Assets/Buff.png", buffTypeString);
-            BuffType.x = x; BuffType.y = y;
-            parent.AddChild(BuffType);
 
+            GenerateAmmoType();
+            
             ui._Score += scoreGained;
             Destroy();
         }

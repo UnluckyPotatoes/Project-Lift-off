@@ -17,13 +17,14 @@ public class Player : Character
     private Sound currentSound;
     private float stepTimer;
     private float stepTimerInterval = 0.5f;
+
     private int pistolAmmoGained = 4;
     private int assaultRifleAmmoGained = 6;
     private int shotgunAmmoGained = 2;
 
-
-
-
+    public float Speed { get { return speed; } }
+    public float InvulernableWindow { get { return invulernableWindow; } }
+    
     public Pistol Pistol { get { return pistol; } }
     public Assault_Rifle AssaultRifle { get { return assaultRifle; } }
     public Shotgun Shotgun { get {  return shotgun; } }
