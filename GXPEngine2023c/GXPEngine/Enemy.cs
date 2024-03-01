@@ -44,17 +44,19 @@ public class Enemy : Character
     public float GetDamage() { return damage; }
 
 
-    public Enemy() : base("Assets/Enemy.png", 1, 1)
+    public Enemy() : base("Assets/Enemy.png", 4, 4)
     {
+        scale = 0.2f;
         health = 5f;
         maxHealth = 5f;
         damage = 1;
         collider.isTrigger = true;
+        SetOrigin(width / 2, height / 2);
         EnemyHealthInfo enemyHealthInfo = new EnemyHealthInfo();
 
         ui = game.FindObjectOfType<UI>();
 
-        AddChild(enemyHealthInfo);
+        //AddChild(enemyHealthInfo);
     }
     private EnemyState currentState;
 
@@ -69,14 +71,24 @@ public class Enemy : Character
         MoveInDirection(q);
     }
     private void AttackBehavior() { }
+    
+
+
+
+
+
+
     private void MoveInDirection(Vector2 p)
     {
-        Collision col = MoveUntilCollision(p.x * speed, 0);
-        if (col == null)
+        SetCycle(0, 3);
+        Collision col = MoveUntilCollision(p.x * speed, 0);  //move in x-axis
+        
+        if (col == null) // if no collison on x
         {
-            col = MoveUntilCollision(0, p.y * speed);
+            if (p.x > 0) { SetCycle(8, 2); } else if(p.x < 0) { SetCycle(10, 2); }
+            col = MoveUntilCollision(0, p.y * speed); //move in y-axis
 
-            if (col != null) 
+            if (col != null)  //if collision on y
             {
                 if (cooldownX <= 0)
                 {
@@ -86,12 +98,13 @@ public class Enemy : Character
                 else 
                 {
                     cooldownX -= Time.deltaTime;
-                    MoveUntilCollision(movementAdjustment * speed, 0);
+                    if (movementAdjustment >= 0) { SetCycle(4, 2); } else { SetCycle(12, 2); }
+                    MoveUntilCollision(movementAdjustment * speed, 0); //move in ONLY x-axis
                 }
                 
             }
         }
-        else
+        else //if collision on x
         {
             if (cooldownY <= 0)
             {
@@ -101,7 +114,8 @@ public class Enemy : Character
             else 
             {
                 cooldownY -= Time.deltaTime;
-                MoveUntilCollision(0, movementAdjustment*speed);
+                if (movementAdjustment >= 0) { SetCycle(8, 2); } else { SetCycle(10, 2); }
+                MoveUntilCollision(0, movementAdjustment*speed); // move in ONLY y-axis
             }
 
         }
@@ -260,6 +274,7 @@ public class Enemy : Character
 
     private void Update()
     {
+        Animate(0.085f);
         BehaviourManager();
 
 
