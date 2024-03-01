@@ -46,6 +46,7 @@ public class Enemy : Character
 
     public Enemy() : base("Assets/Enemy.png", 4, 4)
     {
+        
         scale = 0.2f;
         health = 5f;
         maxHealth = 5f;
@@ -80,12 +81,14 @@ public class Enemy : Character
 
     private void MoveInDirection(Vector2 p)
     {
-        SetCycle(0, 3);
+        int startframe = 0;
+        int amountframes = 2;
+
         Collision col = MoveUntilCollision(p.x * speed, 0);  //move in x-axis
         
         if (col == null) // if no collison on x
         {
-            if (p.x > 0) { SetCycle(8, 2); } else if(p.x < 0) { SetCycle(10, 2); }
+            if (p.x > 0) { startframe = 8; } else if(p.x < 0) { startframe = 10; }
             col = MoveUntilCollision(0, p.y * speed); //move in y-axis
 
             if (col != null)  //if collision on y
@@ -98,11 +101,14 @@ public class Enemy : Character
                 else 
                 {
                     cooldownX -= Time.deltaTime;
-                    if (movementAdjustment >= 0) { SetCycle(4, 2); } else { SetCycle(12, 2); }
+                    if (movementAdjustment >= 0) { startframe = 4; } else { startframe = 12; }
                     MoveUntilCollision(movementAdjustment * speed, 0); //move in ONLY x-axis
                 }
                 
             }
+
+            
+
         }
         else //if collision on x
         {
@@ -114,11 +120,13 @@ public class Enemy : Character
             else 
             {
                 cooldownY -= Time.deltaTime;
-                if (movementAdjustment >= 0) { SetCycle(8, 2); } else { SetCycle(10, 2); }
+                if (movementAdjustment >= 0) { startframe = 8; } else { startframe = 10; }
                 MoveUntilCollision(0, movementAdjustment*speed); // move in ONLY y-axis
             }
 
         }
+
+        SetCycle(startframe, amountframes);
 
     }
 

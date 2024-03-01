@@ -15,6 +15,8 @@ public class Player : Character
     private Shotgun shotgun;
     private Weapon activeWeapon;
     private Sound currentSound;
+    private Sound hurt = new Sound("Assets/Mage_dying_sound.wav");
+    private Sound buffPickup = new Sound("Assets/Power-up_sound.wav");
     private float stepTimer;
     private float stepTimerInterval = 0.5f;
 
@@ -71,10 +73,9 @@ public class Player : Character
 
             if (c is Enemy && invulernableWindowTimer >= invulernableWindow)
             {
-                
                 Enemy enemy = (Enemy)c;
                 health -= enemy.GetDamage();
-                
+                hurt.Play();
                 invulernableWindowTimer = 0;
             }
 
@@ -102,11 +103,10 @@ public class Player : Character
 
             if (c is Buffs) 
             {
-                
                 Buffs buffs = (Buffs)c;
                 AddBuff(buffs.buffType);
                 buffs.Destroy();
-            
+                buffPickup.Play();
             }
 
         }
